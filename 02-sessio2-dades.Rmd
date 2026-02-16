@@ -1131,16 +1131,6 @@ ggbarplot(data = taula_tractament, x = "Var1", y = "Freq")
 ```
 </details>
 
-
-```{r}
-table(data2$record_id)
-id_dpl <- as.integer(names(which(table(data2$record_id)>1)))
-ind_dpl <- which(data2$record_id %in% id_dpl)
-data3 <- data2[-ind_dpl,]
-table(data3$tractament_tipus)
-```
-
-
 </div>
 
 
