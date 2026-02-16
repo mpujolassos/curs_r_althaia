@@ -1,0 +1,426 @@
+/* ============================================================
+   UVic-UCC · Bookdown GitBook Style
+   Paleta corporativa: Vermell #CD0B2D, Gris #3B3B3B, Blanc #FFFFFF
+   Tipografia corporativa: Graphik (manual d’estil UVic-UCC)
+   ============================================================ */
+
+/* ===============================
+   TIPOGRAFIA CORPORATIVA UVIC-UCC
+   =============================== */
+
+@font-face {
+  font-family: "Graphik";
+  src: url("assets/fonts/Graphik-Regular.woff2") format("woff2"),
+       url("assets/fonts/Graphik-Regular.woff") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Graphik";
+  src: url("assets/fonts/Graphik-Medium.woff2") format("woff2"),
+       url("assets/fonts/Graphik-Medium.woff") format("woff");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Graphik";
+  src: url("assets/fonts/Graphik-Semibold.woff2") format("woff2"),
+       url("assets/fonts/Graphik-Semibold.woff") format("woff");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Graphik";
+  src: url("assets/fonts/Graphik-Black.woff2") format("woff2"),
+       url("assets/fonts/Graphik-Black.woff") format("woff");
+  font-weight: 800;
+}
+
+/* Tipografia base i layout */
+html, body {
+  color: #3B3B3B;
+  background-color: #FFFFFF;
+  font-family: "Graphik", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+/* Cos del llibre (columna dreta) */
+.book .book-body .page-wrapper .page-inner {
+  max-width: 980px;
+  padding: 2rem 2rem;
+}
+
+/* Banner institucional a la portada */
+.uvic-banner {
+  border-bottom: 4px solid #CD0B2D;
+  padding: 1.2rem 0;
+  margin-bottom: 1.5rem;
+}
+
+/* Encapçalaments */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Graphik", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+
+h1 {
+  color: #CD0B2D;
+  border-bottom: 3px solid #CD0B2D;
+  padding-bottom: 0.4rem;
+}
+
+h2, h3 {
+  color: #1F1F1F;
+}
+
+/* Enllaços */
+a {
+  color: #CD0B2D;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: #A50A23;
+  text-decoration: underline;
+}
+
+/* Descripcions de sessions */
+.session-desc {
+  color: #666666;
+  font-size: 1.15rem;
+  font-family: "Graphik", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-top: 0.3rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+
+/* ===============================
+   MENÚ LATERAL (GITBOOK)
+   =============================== */
+
+.book .book-summary {
+  background: #F7F7F7;
+  border-right: 1px solid #E5E5E5;
+}
+
+.book .book-summary .summary li a {
+  color: #3B3B3B;
+  padding: 0.3rem 1rem;
+  display: block;
+  border-left: 4px solid transparent;
+}
+
+.book .book-summary .summary li a:hover {
+  background: #ECECEC;
+  border-left-color: #CD0B2D;
+}
+
+.book .book-summary .summary li.active > a,
+.book .book-summary .summary li > a[aria-current="page"] {
+  font-weight: 600;
+  color: #CD0B2D;
+  background: #EFEFEF;
+  border-left-color: #CD0B2D;
+}
+
+/* Capçalera GitBook */
+.book .book-header {
+  background: #FFFFFF;
+  border-bottom: 4px solid #CD0B2D;
+}
+
+.book .book-header .btn {
+  color: #3B3B3B;
+}
+
+/* Títol del llibre a la capçalera */
+.book .book-header .book-title {
+  color: #CD0B2D;
+  font-weight: 800;
+  font-family: "Graphik", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.4px;
+  text-transform: none;
+}
+
+.book .book-header .book-title:hover {
+  color: #A50A23;
+  text-decoration: none;
+}
+
+/* Títol del llibre al sumari */
+.book .book-summary .book-title {
+  color: #CD0B2D;
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin: 0.6rem 1rem 0.8rem 1rem;
+  display: block;
+  border-bottom: 2px solid #CD0B2D;
+  padding-bottom: 0.4rem;
+}
+
+.book .book-summary .book-title a {
+  color: #CD0B2D;
+  text-decoration: none;
+}
+.book .book-summary .book-title a:hover {
+  color: #A50A23;
+}
+
+/* ===============================
+   Taules
+   =============================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+}
+
+thead th {
+  background: #CD0B2D;
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 0.6rem;
+}
+
+tbody td, tbody th {
+  border: 1px solid #E6E6E6;
+  padding: 0.55rem 0.65rem;
+}
+
+tbody tr:nth-child(odd) {
+  background: #FAFAFA;
+}
+
+/* ===============================
+   Codis (chunks)
+   =============================== */
+
+pre, code, kbd, samp {
+  font-family: "SFMono-Regular", "Roboto Mono", Menlo, Consolas, monospace;
+}
+
+pre code {
+  display: block;
+  background: #F5F5F5;
+  border-left: 4px solid #CD0B2D;
+  padding: 0.8rem 1rem;
+  overflow-x: auto;
+}
+
+code {
+  background: #F2F2F2;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+}
+
+/* ===============================
+   Figures
+   =============================== */
+
+img, .figure img {
+  display: block;
+  margin: 1rem auto;
+  max-width: 80%;
+  border: 1px solid #EAEAEA;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.figure .caption, figcaption {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+/* ===============================
+   Bloc destacat (callout)
+   =============================== */
+
+.callout {
+  border-left: 6px solid #CD0B2D;
+  background: #FFF6F7;
+  padding: 0.9rem 1rem;
+  margin: 1rem 0;
+}
+
+.callout h4 {
+  margin-top: 0;
+  color: #CD0B2D;
+}
+
+/* ===============================
+   Botons
+   =============================== */
+
+.btn-primary {
+  background-color: #CD0B2D;
+  border-color: #CD0B2D;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #A50A23;
+  border-color: #A50A23;
+}
+
+/* ===============================
+   Footer institucional
+   =============================== */
+
+.footer-note {
+  border-top: 1px solid #E5E5E5;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+/* Accessibilitat */
+:focus {
+  outline: 3px solid #FDB8BF;
+  outline-offset: 2px;
+}
+
+/* Responsiu */
+@media (max-width: 992px) {
+  .book .book-body .page-wrapper .page-inner {
+    padding: 1.25rem 1.25rem;
+    max-width: 100%;
+  }
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+}
+
+/* ===============================
+   Blocs de tasques UVic-UCC
+   =============================== */
+
+.task-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.15rem 0.45rem;
+  border-left: 4px solid #CD0B2D;
+  background: #FFF6F7;
+  color: #3B3B3B;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.task-box {
+  border-left: 6px solid #CD0B2D;
+  background: #FFF6F7;
+  padding: 0.85rem 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.task-box .task-title {
+  margin: 0 0 0.35rem 0;
+  font-weight: 700;
+  color: #CD0B2D;
+}
+
+.task-list {
+  list-style: none;
+  margin: 0.6rem 0 1rem 0;
+  padding: 0;
+}
+
+.task-list li {
+  position: relative;
+  padding: 0.35rem 0.5rem 0.35rem 2rem;
+  background: #FFF6F7;
+  border-left: 4px solid #CD0B2D;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.task-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #CD0B2D;
+  font-weight: 800;
+}
+
+/* Bloc de pregunta de recerca */
+.research-question-box {
+  border-left: 6px solid #8B0A1F;
+  background: #FFF9FA;
+  padding: 0.85rem 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.research-question-box .rq-title {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8B0A1F;
+}
+
+.research-question-box p {
+  margin: 0;
+  font-style: italic;
+  color: #2B2B2B;
+}
+
+
+/* ===============================
+   BOX D’OBJECTIUS UVIC-UCC
+   =============================== */
+
+.objectius-box {
+  border: 2px solid #CD0B2D;         /* Vermell corporatiu UVic */
+  background-color: #FFF6F7;         /* Rosa clar */
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.objectius-box h3 {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  font-family: "Graphik", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #CD0B2D;
+}
+
+.objectius-box ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.objectius-box li {
+  margin-bottom: 0.4rem;
+  color: #3B3B3B;
+  font-size: 1.15rem;
+}
+
+.consell-box {
+  border: 2px solid #666666; /* Taronja UVic suau */
+  background-color: #fcf3e8; /* Taronja molt clar per llegibilitat */
+  font-family: "Graphik Thin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 1em;
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
+.consell-title {
+  font-weight: bold;
+  font-family: "Graphik Thin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #666666;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+}
+

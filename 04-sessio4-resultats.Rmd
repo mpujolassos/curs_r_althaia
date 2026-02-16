@@ -1,0 +1,22 @@
+# Comunicació de resultats i visualització avançada
+
+## Presentació de resultats amb RMarkdown
+
+## Gràfics amb múltiples panells
+
+## Personalització de gràfics
+- Colors
+- Títols i subtítols
+- Llegendes
+
+## Gràfics especials
+**Suggeriments:**
+- Heatmaps
+- Ridgeline plots (`ggridges`)
+- Gràfics interactius (`plotly`)
+
+## Hands-On 4
+
+### Objectius
+- Elaborar un informe en HTML o PDF
+- Crear i personalitzar visualitzacions

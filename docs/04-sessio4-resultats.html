@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Sessió 4 Comunicació de resultats i visualització avançada | Introducció a R per a l’anàlisi de dades</title>
+  <meta name="description" content="Sessió 4 Comunicació de resultats i visualització avançada | Introducció a R per a l’anàlisi de dades" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Sessió 4 Comunicació de resultats i visualització avançada | Introducció a R per a l’anàlisi de dades" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sessió 4 Comunicació de resultats i visualització avançada | Introducció a R per a l’anàlisi de dades" />
+  
+  
+  
+
+<meta name="author" content="Meritxell Pujolassos Tanyà (UVic - UCC)" />
+
+
+<meta name="date" content="2026-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="03-sessio3-analisi.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section" id="toc-section"></a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Estructura del llibre i els seus continguts</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#desenvolupament-de-les-sessions"><i class="fa fa-check"></i>Desenvolupament de les sessions</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#requisits"><i class="fa fa-check"></i>Requisits</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#crèdits"><i class="fa fa-check"></i>Crèdits</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html"><i class="fa fa-check"></i><b>1</b> Primer contacte amb R i el seu entorn</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#introducció-a-r"><i class="fa fa-check"></i><b>1.1</b> Introducció a R</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#què-és-r"><i class="fa fa-check"></i><b>1.1.1</b> Què és R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#què-és-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Què és RStudio?</a></li>
+<li class="chapter" data-level="1.1.3" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#com-installar-lr-i-lrstudio"><i class="fa fa-check"></i><b>1.1.3</b> Com instal·lar l’R i l’Rstudio</a></li>
+<li class="chapter" data-level="1.1.4" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#les-4-finestres-principals-de-rstudio"><i class="fa fa-check"></i><b>1.1.4</b> Les 4 finestres principals de RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#un-cas-pràctic-per-començar-el-conjunt-de-dades-laryngoscope"><i class="fa fa-check"></i><b>1.2</b> Un cas pràctic per començar: el conjunt de dades laryngoscope</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#explorar-i-entendre-les-dades"><i class="fa fa-check"></i><b>1.2.1</b> Explorar i entendre les dades</a></li>
+<li class="chapter" data-level="1.2.2" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#els-primers-gràfics"><i class="fa fa-check"></i><b>1.2.2</b> Els primers gràfics</a></li>
+<li class="chapter" data-level="" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#exercicis"><i class="fa fa-check"></i>Exercicis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#bàsics-dr"><i class="fa fa-check"></i><b>1.3</b> Bàsics d’R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#bàsics-del-llenguatge-dr"><i class="fa fa-check"></i><b>1.3.1</b> Bàsics del llenguatge d’R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#les-peculiaritats-dels-noms"><i class="fa fa-check"></i><b>1.3.2</b> Les peculiaritats dels noms</a></li>
+<li class="chapter" data-level="1.3.3" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#les-llibreries-i-les-funcions-dr"><i class="fa fa-check"></i><b>1.3.3</b> Les llibreries i les funcions d’R</a></li>
+<li class="chapter" data-level="" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#exercicis-1"><i class="fa fa-check"></i>Exercicis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="01-sessio1-introduccio.html"><a href="01-sessio1-introduccio.html#bibliografia"><i class="fa fa-check"></i><b>1.4</b> Bibliografia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html"><i class="fa fa-check"></i><b>2</b> Importació i manipulació de dades amb R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#vectors"><i class="fa fa-check"></i><b>2.1</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#exercicis-2"><i class="fa fa-check"></i>Exercicis</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#factors"><i class="fa fa-check"></i><b>2.2</b> Factors</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#exercicis-3"><i class="fa fa-check"></i><b>2.2.1</b> Exercicis</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#data-frames"><i class="fa fa-check"></i><b>2.3</b> Data frames</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#exercicis-4"><i class="fa fa-check"></i><b>2.3.1</b> Exercicis</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#matrius"><i class="fa fa-check"></i><b>2.4</b> Matrius</a></li>
+<li class="chapter" data-level="2.5" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#llistes"><i class="fa fa-check"></i><b>2.5</b> Llistes</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#exercicis-5"><i class="fa fa-check"></i><b>2.5.1</b> Exercicis</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#organització-de-les-dades"><i class="fa fa-check"></i><b>2.6</b> Organització de les dades</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#una-columna-una-variable"><i class="fa fa-check"></i><b>2.6.1</b> Una columna, una variable</a></li>
+<li class="chapter" data-level="2.6.2" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#noms-de-columnes-que-contenen-més-duna-variable"><i class="fa fa-check"></i><b>2.6.2</b> Noms de columnes que contenen més d’una variable</a></li>
+<li class="chapter" data-level="2.6.3" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#noms-de-columnes-que-contenen-noms-i-valors-de-variables"><i class="fa fa-check"></i><b>2.6.3</b> Noms de columnes que contenen noms i valors de variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#cas-pràctic"><i class="fa fa-check"></i><b>2.7</b> Cas pràctic</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#importar-les-dades-a-r"><i class="fa fa-check"></i><b>2.7.1</b> Importar les dades a R</a></li>
+<li class="chapter" data-level="2.7.2" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#esctructura-general-de-dataframe"><i class="fa fa-check"></i><b>2.7.2</b> Esctructura general de dataframe</a></li>
+<li class="chapter" data-level="2.7.3" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#re-organització-dalgunes-columnes-en-una-variable"><i class="fa fa-check"></i><b>2.7.3</b> Re-organització d’algunes columnes en una variable</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="02-sessio2-dades.html"><a href="02-sessio2-dades.html#bibliografia-1"><i class="fa fa-check"></i><b>2.8</b> Bibliografia</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-sessio3-analisi.html"><a href="03-sessio3-analisi.html"><i class="fa fa-check"></i><b>3</b> Explorar i entendre les dades</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-sessio3-analisi.html"><a href="03-sessio3-analisi.html#anàlisi-exploratòria-de-les-dades"><i class="fa fa-check"></i><b>3.1</b> Anàlisi Exploratòria de les Dades</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-sessio3-analisi.html"><a href="03-sessio3-analisi.html#mesures-de-centralitat-i-variabilitat"><i class="fa fa-check"></i><b>3.1.1</b> Mesures de centralitat i Variabilitat</a></li>
+<li class="chapter" data-level="3.1.2" data-path="03-sessio3-analisi.html"><a href="03-sessio3-analisi.html#missing-values"><i class="fa fa-check"></i><b>3.1.2</b> Missing values</a></li>
+<li class="chapter" data-level="3.1.3" data-path="03-sessio3-analisi.html"><a href="03-sessio3-analisi.html#covariation-relació-entre-dues-variables"><i class="fa fa-check"></i><b>3.1.3</b> Covariation: relació entre dues variables</a></li>
+<li class="chapter" data-level="3.1.4" data-path="03-sessio3-analisi.html"><a href="03-sessio3-analisi.html#dades-longitudinals"><i class="fa fa-check"></i><b>3.1.4</b> Dades longitudinals</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="03-sessio3-analisi.html"><a href="03-sessio3-analisi.html#estadística-inferencial"><i class="fa fa-check"></i><b>3.2</b> Estadística inferencial(?)</a></li>
+<li class="chapter" data-level="3.3" data-path="03-sessio3-analisi.html"><a href="03-sessio3-analisi.html#anàlisi-multivariant"><i class="fa fa-check"></i><b>3.3</b> Anàlisi multivariant (?)</a></li>
+<li class="chapter" data-level="3.4" data-path="03-sessio3-analisi.html"><a href="03-sessio3-analisi.html#hands-on-3"><i class="fa fa-check"></i><b>3.4</b> Hands-On 3</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="03-sessio3-analisi.html"><a href="03-sessio3-analisi.html#objectius"><i class="fa fa-check"></i><b>3.4.1</b> Objectius</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-sessio4-resultats.html"><a href="04-sessio4-resultats.html"><i class="fa fa-check"></i><b>4</b> Comunicació de resultats i visualització avançada</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-sessio4-resultats.html"><a href="04-sessio4-resultats.html#presentació-de-resultats-amb-rmarkdown"><i class="fa fa-check"></i><b>4.1</b> Presentació de resultats amb RMarkdown</a></li>
+<li class="chapter" data-level="4.2" data-path="04-sessio4-resultats.html"><a href="04-sessio4-resultats.html#gràfics-amb-múltiples-panells"><i class="fa fa-check"></i><b>4.2</b> Gràfics amb múltiples panells</a></li>
+<li class="chapter" data-level="4.3" data-path="04-sessio4-resultats.html"><a href="04-sessio4-resultats.html#personalització-de-gràfics"><i class="fa fa-check"></i><b>4.3</b> Personalització de gràfics</a></li>
+<li class="chapter" data-level="4.4" data-path="04-sessio4-resultats.html"><a href="04-sessio4-resultats.html#gràfics-especials"><i class="fa fa-check"></i><b>4.4</b> Gràfics especials</a></li>
+<li class="chapter" data-level="4.5" data-path="04-sessio4-resultats.html"><a href="04-sessio4-resultats.html#hands-on-4"><i class="fa fa-check"></i><b>4.5</b> Hands-On 4</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="04-sessio4-resultats.html"><a href="04-sessio4-resultats.html#objectius-1"><i class="fa fa-check"></i><b>4.5.1</b> Objectius</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducció a R per a l’anàlisi de dades</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="comunicació-de-resultats-i-visualització-avançada" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Sessió 4</span> Comunicació de resultats i visualització avançada<a href="04-sessio4-resultats.html#comunicació-de-resultats-i-visualització-avançada" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="presentació-de-resultats-amb-rmarkdown" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Presentació de resultats amb RMarkdown<a href="04-sessio4-resultats.html#presentació-de-resultats-amb-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="gràfics-amb-múltiples-panells" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Gràfics amb múltiples panells<a href="04-sessio4-resultats.html#gràfics-amb-múltiples-panells" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="personalització-de-gràfics" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Personalització de gràfics<a href="04-sessio4-resultats.html#personalització-de-gràfics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Colors</li>
+<li>Títols i subtítols</li>
+<li>Llegendes</li>
+</ul>
+</div>
+<div id="gràfics-especials" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Gràfics especials<a href="04-sessio4-resultats.html#gràfics-especials" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Suggeriments:</strong>
+- Heatmaps
+- Ridgeline plots (<code>ggridges</code>)
+- Gràfics interactius (<code>plotly</code>)</p>
+</div>
+<div id="hands-on-4" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Hands-On 4<a href="04-sessio4-resultats.html#hands-on-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="objectius-1" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Objectius<a href="04-sessio4-resultats.html#objectius-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Elaborar un informe en HTML o PDF</li>
+<li>Crear i personalitzar visualitzacions</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="03-sessio3-analisi.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "toc_depth": 5
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

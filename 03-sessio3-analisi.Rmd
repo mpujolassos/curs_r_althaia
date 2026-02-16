@@ -1,0 +1,114 @@
+# Explorar i entendre les dades
+
+## Anàlisi Exploratòria de les Dades
+
+Fins ara hem vist un sol tipus de gràfic, concretament un gràfic de dispersió. Aquest s'utilitza quan volem visualitzar l'associació entre dues variables numèriques contínues, com per exemple, el temps d'intubació i l'edat dels pacients. Però quin seria el millor gràfic per representar el temps d'intubació en funció del sexe?
+
+Per saber quin és el millor gràfic per representar les variables que ens interessen, hem de conèixer de quin tipus són:
+
+-   **Variabla categòrica**: els seus valors són categories.
+
+    -   **Categòrica nominal**: les categories de la variable no segueixen un ordre predefinit.
+<div class="session-desc">
+  Mètode de laringoscòpia: Standard Macintosh #4/AWS Pentaz Video</div>
+<div class="session-desc">
+  Sexe: Home/Dona</div>
+
+    -   **Categòrica ordinal**: les categories de la variable segueixen un order concret i lògic
+<div class="session-desc">
+Mal de coll després de la intervenció: 0 = none; 1 = mild; 2 = moderate; 3 = severe</div>
+
+-   **Variabla numèrica**: els seus valors són numèrics
+
+    -   **Numèrica discreta**: els seus valors no són infinits, sinó que són nombres enters
+<div class="session-desc">
+Nombre d'intents: 1, 2, 3</div>
+
+
+    -   **Numèrica contínua**: els seus valors poden ser infinits
+<div class="session-desc">
+BMI: rang numèric entre 31-61</div>
+
+<br>
+
+El paquet *ggpubr* permet graficar una gran varietat de gràfics en funció de cada situació
+
+### Mesures de centralitat i Variabilitat
+
+#### Resums numèrics
+-   variabilitat
+
+-   valors més freqüents
+
+
+#### Visualització d'una variable: X contínua{-}
+
+Visualització de distribucions d'una sola variable
+
+`ggdensity()` Gràfic de densitat
+
+`stat_overlay_normal_density()` Gràfic de distribució normal
+
+`gghistogram()` Histrograma
+
+`ggecdf()` Funció de distribució acumulada empírica
+
+`ggqqplot()` QQ Plots
+
+### Missing values
+
+### Covariation: relació entre dues variables
+
+#### Dues variables: X Discreta i Y Contínua{-}
+
+Visualització de distribucions d'una variable numèrica per cada grup/categoria d'una categòrica
+
+`ggboxplot()` Gràfic de caixes
+
+`ggviolin()` Gràfic de violí
+
+`ggdotplot()` Gràfic de punts
+
+`ggstripchart()` Núvol de punts per grups/categories
+
+`ggbarplot()` Gràfic de barres
+
+`ggline()` Gràfic de línies
+
+`ggerrorplot()` Visualització d'error
+
+`ggpie()`, `ggdonutchart()` Diagrama de formatges
+
+`ggdotchart()` `theme_cleveland()` Gràfic de punts de Cleveland
+
+#### Dues variables contínues{-}
+
+Núvol de punts o Diagrames de dispersió entre dues variables numèriques
+
+`ggscatter()` Núvol de punts
+
+`stat_cor()` Afegeix el coeficient de correlació
+
+`stat_regline_equation()` Afegeix la recta de regressió
+
+#### Dades aparellades{-}
+
+Gràfic de línies per mesures repetides
+
+`ggpaired()` Gràfic per dades aparellades
+
+### Dades longitudinals
+
+## Estadística inferencial(?)
+
+## Anàlisi multivariant (?)
+- PCA
+- Heatmaps
+- Altres visualitzacions multivariants
+
+## Hands-On 3
+
+### Objectius
+- Anàlisi descriptiva
+- Estadística inferencial
+- Visualització multivariant

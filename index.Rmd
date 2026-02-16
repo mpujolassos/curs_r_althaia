@@ -1,0 +1,92 @@
+---
+title: "Introducció a R per a l’anàlisi de dades"
+author: "Meritxell Pujolassos Tanyà (UVic - UCC)"
+date: "2026"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    number_sections: true
+---
+# {-}
+
+Aquest material és la base del curs d’introducció a l'ús **R** i **Rstudio** per l'organització, anàlisi i visualització de dades.
+
+L’objectiu és proporcionar les eines bàsiques per:
+
+- Importar dades a R
+
+- Processar-les i analitzar-les
+
+- Visualitzar-ne els resultats
+
+- Comunicar els resultats de manera reproduïble
+
+<br>
+
+## Estructura del llibre i els seus continguts {-}
+
+Cada capítol correspon a una sessió pràctica on es treballaran els següents continguts: 
+
+
+**Sessió 1.** Primer contacte amb R i el seu entorn   
+<div class="session-desc">
+  Introducció al llenguatge R i a l’entorn de RStudio per entendre què ofereix, com funciona l’espai de treball i com         instal·lar, carregar i utilitzar paquets mentre es creen i manipulen els primers objectes.
+</div>
+
+**Sessió 2.** De les dades crues a dades analitzables 
+<div class="session-desc">
+  Aprendre a importar diferents tipus de fitxers des de RedCap i transformar dades per preparar conjunts de dades nets,       ordenats i llestos per a l’anàlisi.
+</div>
+
+**Sessió 3.** Explorar i entendre les dades  
+<div class="session-desc">
+  Explorar i descriure dades mitjançant estadístiques univariants i bivariants, visualitzacions informatives i tècniques      multivariants, incorporant també elements d’estadística inferencial.
+</div>
+
+**Sessió 4.** Comunicació de resultats i visualització avançada 
+<div class="session-desc">
+  Crear informes professionals amb RMarkdown i generar visualitzacions avançades, personalitzant gràfics, colors i            disposicions per comunicar resultats de manera clara i efectiva.
+</div>
+
+<br>
+
+## Desenvolupament de les sessions {-}
+
+Les sessions estan estructurades amb una primera part d'exposició dels continguts amb exemples, seguida d'una segona part pràctica amb propostes d'exercicis i les seves solucions.
+
+
+## Requisits {-}
+
+-   R i RStudio instal·lats
+
+-   Coneixements bàsics de biociències i estadística  
+
+-   Interès per l’anàlisi de dades i la reproduïbilitat científica 
+
+
+
+## Crèdits {-}
+
+Material elaborat per Meritxell Pujolassos Tanyà, docent al **Departament de Biociències de la Universitat de Vic - Universitat Central de Cataluna** i membre del [**Grup de Recerca en Bioinformàtica i Bioimatge**](https://mon.uvic.cat/bi-squared/).
+
+
+
+<!-- =======================
+     FOOTER INSTITUCION
+     ======================= -->
+
+<div class="footer-note" style="margin-top:3rem; padding-top:1rem; text-align:center;">
+  <img src="img/logo-uvic-ucc.jpg" alt="UVic-UCC" style="height:42px; display:block; margin:0 auto 0.6rem;">
+  <div style="font-size:1rem; font-weight:600; color:#3B3B3B;">
+    Universitat de Vic – Universitat Central de Catalunya
+  </div>
+  <div style="margin-top:0.25rem; color:#555;">
+    Facultat de Ciències, Tecnologia i Enginyeries
+    C/ de la Laura, 13 · 08500 Vic (Barcelona)
+    meritxell.pujolassos@uvic.cat
+  </div>
+  <div style="margin-top:0.5rem; color:#777;">
+    © `r format(Sys.Date(), '%Y')` UVic‑UCC · Material docent d’ús exclusivament acadèmic.
+  </div>
+</div>
+
