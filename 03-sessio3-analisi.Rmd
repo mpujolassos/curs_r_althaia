@@ -1,6 +1,11 @@
 # Explorar i entendre les dades
 
-## Anàlisi Exploratòria de les Dades
+## Objectius
+- Anàlisi descriptiva
+- Estadística inferencial
+- Visualització multivariant
+
+## Tipus de variables
 
 Fins ara hem vist un sol tipus de gràfic, concretament un gràfic de dispersió. Aquest s'utilitza quan volem visualitzar l'associació entre dues variables numèriques contínues, com per exemple, el temps d'intubació i l'edat dels pacients. Però quin seria el millor gràfic per representar el temps d'intubació en funció del sexe?
 
@@ -33,15 +38,15 @@ BMI: rang numèric entre 31-61</div>
 
 El paquet *ggpubr* permet graficar una gran varietat de gràfics en funció de cada situació
 
-### Mesures de centralitat i Variabilitat
+## Mesures de centralitat i Variabilitat
 
-#### Resums numèrics
+### Resums numèrics
 -   variabilitat
 
 -   valors més freqüents
 
 
-#### Visualització d'una variable: X contínua{-}
+### Visualització d'una variable: X contínua{-}
 
 Visualització de distribucions d'una sola variable
 
@@ -55,11 +60,11 @@ Visualització de distribucions d'una sola variable
 
 `ggqqplot()` QQ Plots
 
-### Missing values
+## Missing values
 
-### Covariation: relació entre dues variables
+## Relació entre dues variables
 
-#### Dues variables: X Discreta i Y Contínua{-}
+### Dues variables: X Discreta i Y Contínua{-}
 
 Visualització de distribucions d'una variable numèrica per cada grup/categoria d'una categòrica
 
@@ -81,7 +86,7 @@ Visualització de distribucions d'una variable numèrica per cada grup/categoria
 
 `ggdotchart()` `theme_cleveland()` Gràfic de punts de Cleveland
 
-#### Dues variables contínues{-}
+### Dues variables contínues{-}
 
 Núvol de punts o Diagrames de dispersió entre dues variables numèriques
 
@@ -91,7 +96,7 @@ Núvol de punts o Diagrames de dispersió entre dues variables numèriques
 
 `stat_regline_equation()` Afegeix la recta de regressió
 
-#### Dades aparellades{-}
+### Dades aparellades{-}
 
 Gràfic de línies per mesures repetides
 
@@ -99,16 +104,5 @@ Gràfic de línies per mesures repetides
 
 ### Dades longitudinals
 
-## Estadística inferencial(?)
-
-## Anàlisi multivariant (?)
-- PCA
-- Heatmaps
-- Altres visualitzacions multivariants
 
 ## Hands-On 3
-
-### Objectius
-- Anàlisi descriptiva
-- Estadística inferencial
-- Visualització multivariant
