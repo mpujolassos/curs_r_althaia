@@ -9,7 +9,7 @@ output:
 ---
 # {-}
 
-Aquest material és la base del curs d’introducció a l'ús **R** i **Rstudio** per l'organització, anàlisi i visualització de dades.
+Aquest material és la base del curs d’introducció a l'ús **R** i **Rstudio** per l'organització, anàlisi i visualització de dades per a professionals de l'Hospital Althaia.
 
 L’objectiu és proporcionar les eines bàsiques per:
 
@@ -49,6 +49,8 @@ Cada capítol correspon a una sessió pràctica on es treballaran els següents 
 </div>
 
 <br>
+
+Part d'aquest material, ja sigui de l'estructura com d'alguns exemples, està inspirat en el llibre [R for Data Science (2e)](https://r4ds.hadley.nz/), escrit per Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 ## Desenvolupament de les sessions {-}
 

@@ -21,9 +21,7 @@ bibliografia
 importació-i-manipulació-de-dades-amb-r
 vectors
 factors
-exercicis-3
 data-frames
-exercicis-4
 matrius
 llistes
 exercicis-5

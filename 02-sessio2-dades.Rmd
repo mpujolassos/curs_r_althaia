@@ -2,10 +2,15 @@
 
 <div class="objectius-box">
   <h3>Objectius de la sessió</h3>
-  <p> - Importar dades de diferents formats</p>
-  <p> - Manipular datasets: transformar i seleccionar variables, filtrar files... </p>
-  <p> - Conèixer funcions bàsiques d’R</p>
-  <p> - Utilitzar funcions del tidyverse</p>
+  
+- Importar dades de diferents formats
+
+- Manipular datasets: transformar i seleccionar variables, filtrar files... 
+
+- Conèixer funcions bàsiques d’R
+
+- Utilitzar funcions del tidyverse
+
 </div>
 
 
@@ -16,7 +21,7 @@ library(kableExtra)
 
 A la sessió anterior vam veure com assignar valors a un objecte mitjançant `<-`. Els objectes poden contenir un únic valor, com per exemple `objecte_a <- 12.3` o bé poden ser conjunts de valors. 
 
-Aquests conjunts d evalors poden pendre diferents formes:
+Aquests conjunts de valors poden pendre diferents formes:
 
 -   vectors
 
@@ -226,7 +231,7 @@ round(s_prop, digits = 3)
 
 
 
-### Exercicis
+### Exercicis {-}
 
 
 <div class="task-box">
@@ -298,9 +303,16 @@ end<-c(250,410,200)
 #Utilitzem la funció data.frame() per unir les diferents columnes (vectors)
 df <- data.frame(chr,start,end,strand)
 class(df)
-str(df)
-df
 ```
+
+```{r}
+View(df) # obre una finestra a RStudio per la visualització de la taula
+```
+
+```{r}
+str(df)
+```
+
 La funció `str()` indica l'estructura de cada una de les columnes del data frame. Permet comprovar que cada variable s'ha llegit de manera correcte.
 
 <br>
@@ -314,8 +326,10 @@ colnames(df)
 # NOM DE FILES
 row.names(df)
 row.names(df) <- c("sample01", "sample02", "sample03")
-View(df) # obre una finestra per la visualització de la taula
 ```
+
+
+
 
 <br>
 
@@ -327,7 +341,7 @@ ncol(df); nrow(df)
 
 <br>
 
-Com hem vist abans amb els vectors, també podem accedir a columnes, files o cel·les concretes d'un data frame. 
+Similar als vectors, també podem accedir a columnes, files o cel·les concretes d'un data frame. 
 
 Pel que fa a les columnes, hi ha diferents maneres de fer-ho utilitzant funcions base d'R:
 
@@ -338,14 +352,14 @@ df[,1] # primera columna
 df[,c(1, 4)] # primera i tercera columna
 ```
 
-b) Utilitzant `[]` i indicant el nom exacte de la columna després de la coma
+b) Utilitzant `[` `]` i indicant el nom exacte de la columna després de la coma
 ```{r}
 df[,"Chromosome"]
 
 df[,c("Chromosome", "Strand")]
 ```
 
-c) Utilitzant `$` i indicant el nom exacte de la columna. Aquesta alternativa no permet seleccionar més d'una columna.
+c) Utilitzant `$` i indicant el nom exacte de la columna (sense cometes!). Aquesta alternativa no permet seleccionar més d'una columna.
 ```{r}
 df$Chromosome
 df$Strand
@@ -360,7 +374,13 @@ df[2,] # mostra 02
 df[c(2,3),] # mostra 02 i 03
 ```
 
-### Exercicis
+<div class="consell-box">
+  <div class="consell-title">💡 Consell</div>
+  <p> Recorda que la primera posició (bans de la coma) fa raferència a les files, i la segona posició (després de la coma) a les columnes. Quan l'espai d'abans/després de la coma es deixa en blanc s'estan seleccionant totes les files/columnes.
+  </p>
+</div>
+
+### Exercicis {-}
 
 <div class="task-box">
   <div class="task-title"> Per practicar!</div>
@@ -541,7 +561,7 @@ Fins ara hem pogut treballar amb funcions base d'R, però a partir d'ara ens far
 ```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
 install.packages("tidyverse")
 ```
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
 
@@ -605,7 +625,18 @@ head(polips)
 
 En aquest conjunt de dades, cada pacient correspon a una fila. Les variables `participant_id`,	`sex` i	`age` descriuen característiques del pacient. La variable `treatment` fa referècia al tractament que ha rebut durant l'estudi (sulindac o placebo). Les altres tres columnes, `baseline`, `number3m`	i `number12m` fan referència al nombre de pòlips a cada visita (inici del tractament, al cap de 3 mesos i al cap de 12 mesos, respectivament). 
 
-Per tal d'organitzar la taula de manera correcta, el primer pas és preguntar-nos quina (o quines) són les variables que ens interessen analitzar. En aquest cas, està clar que per saber si el tractament funciona o no, haurem de fixar-nos en el **nombre de pòlips**. Per tant, si el nombre de pòlips és una de les variables que ens interessa, el segon pas serà ajustar l'estructura de la taula per tal de tenir aquesta informació en una sola columna. Ho farem amb la funció `pivot_longer()` de `tidyverse`:
+Per tal d'organitzar la taula de manera correcta, el primer pas és preguntar-nos quina (o quines) són les variables que ens interessen analitzar. Exemples de possibles preguntes de recerca podrien ser:
+
+::: research-question-box
+::: rq-title
+Pregunta de recerca
+:::
+
+<p>El nombre de pòlips disminueix al llarg del temps?</p>
+<p>El tractament amb sulindac redueix més el nombre de pòlips en comparació amb el placebo?</p>
+:::
+
+En aquest cas, està clar que per saber si el tractament funciona o no, haurem de fixar-nos en el **nombre de pòlips**. Per tant, si el nombre de pòlips és una de les variables que ens interessa, el segon pas serà ajustar l'estructura de la taula per tal de tenir aquesta informació en una sola columna. Ho farem amb la funció `pivot_longer()` de `tidyverse`:
 
 
 ```{r}
@@ -793,7 +824,7 @@ library(Hmisc)      # Si no el tens instal·lat ho hauràs de fer amb install.pa
 data=read.csv('CursIntroducciAR-Interval_DATA_2026-01-07_1541.csv')
 ```
 
--   Setting Labels: intordueix per cada columna, un nom (etiqueta) més explicatiu i fàcil de llegir.
+-   Setting Labels: introdueix per cada columna, un nom (etiqueta) més explicatiu i fàcil de llegir.
 
 -   Setting Factors: crea noves variables en forma de factor (només per aquelles categòriques) amb la funció `factor()` i en defineix les categories amb `levels()`. 
 
@@ -965,7 +996,7 @@ table(data$sexe.factor)
 </details>
 
 
- <p>-  Per últim, escriu (no copiis i enganxis) al teu script `data$tractament`. Què passa a mida que afegeixes lletres?. </p>
+ <p>-  Per últim, escriu (no copiis i enganxis) al teu script `data$tractament`. Què passa a mida que afegeixes lletres? </p>
 
 <details>
   <summary><span class="task-title">Solució</span></summary>
@@ -981,7 +1012,9 @@ knitr::include_graphics("img/dollar.png")
 
 Acabem de veure que hi ha una gran quantitat d'informació, que anirem analitzant durant les diferents sessions. ara però, ens centrarem en els diferents tipus de diagnòstic. Una possible via a explorar podria fer referència al tractament:
 
-<div class="research-question-box"> Quin és el tractament més habitual?</div>
+<div class="research-question-box"> 
+  <div class="rq-title"> Pregunta de recerca</div>
+  <div> Quin és el tractament més habitual?</div>
 
 ### Re-organització d'algunes columnes en una variable
 
@@ -1009,7 +1042,7 @@ label(data$tractament___9)
 Els tractaments es classifiquen en: (0) Rebuig, (1) Sense tractament/Tractament simpomàtic pal·liatiu, (2) Radioteràpia, (3) Quimioteràpia, (4) Resecció local, (5) Cirurgia, (6) Immunoteràpia, (7) Teràpia dirigida, (9) Desconegut
 </details>
 
- <p>-   Visualitza el significat de cada tractament mitjançant la funció `label()`. Quants i quins tipus de tractaments hi ha?</p>
+ <p>-   Crea un nou data frame anomenat `data_tidy` que contingui una columna amb la informació continguda als noms de les columnes "tractament___0.factor", ..., "tractament___9.factor". Per tant, aquesta nova columna, que podem anomenar `tractament_tipus` contindrà la informació sobre el tipus de tractament. Utilitza la funció `pivot_longer()`i pensa quins han de ser els argument de `cols = `, `names_to = ` i `values_to =` </p>
 
 <details>
   <summary><span class="task-title">Solució</span></summary>
@@ -1030,21 +1063,74 @@ data_tidy <- data %>%
   )
 ```
 
+</details>
+
+ <p>-   Quantes columnes té aquest nou data frame? i quantes files? </p>
+
+<details>
+  <summary><span class="task-title">Solució</span></summary>
+```{r}
+dim(data_tidy)
+```
+Han disminuit el nombre de columnes respecte el data frame original (105), però han augmentat el nombre de files (432)
+
+</details>
+
+<p>-   Quina informació conté la columna `tractament_tipus`? i la `tractament_checked`? </p>
+
+<details>
+  <summary><span class="task-title">Solució</span></summary>
+  la funció `pivot_longer()` pivota les columnes tractament___0-9 a una única columna anomenada `tractament_tipus`. Per fer-ho ompla la columna inserint files per cada individu amb els valors de tractament___0 fins tractament___9 . La columna `tractament_checked` conté la informació de si aquell tractament es va dur a terme ("Checked") o no ("Unchecked").
+```{r}
+data_tidy[1:20,c("tractament_tipus", "tractament_checked")]
+```
+
+</details>
+
+<p>-    Transforma a factor la variable `tractament_tipus`. Després, utilitza `table()` per comptar quantes tipus de tractament hi ha per cada pacient.</p>
+
+<details>
+  <summary><span class="task-title">Solució</span></summary>
 ```{r}
 data_tidy$tractament_tipus <- factor(data_tidy$tractament_tipus,
-                                     labels = c("(0) Rebuig", "(1) Sense tractament/Tractament simpomàtic pal·liatiu", "(2) Radioteràpia", "(3) Quimioteràpia", "(4) Resecció local", "(5) Cirurgia", "(6) Immunoteràpia", "(7) Teràpia dirigida", "(9) Desconegut"))
+                                     labels = c("Rebuig", "Sense tractament/Tractament simpomàtic pal·liatiu", "Radioteràpia", "Quimioteràpia", "Resecció local", "Cirurgia", "Immunoteràpia", "Teràpia dirigida", "Desconegut"))
 str(data_tidy$tractament_tipus)
 table(data_tidy$tractament_tipus)
 ```
+</details>
 
+<p>-    Crea un nou data frame amb només aquelles files que porten "Checked" a la columna `tractament_checked` (mantén totes les columnes)</p>
 
-
+<details>
+  <summary><span class="task-title">Solució</span></summary>
 ```{r}
 ind_keep <- which(data_tidy$tractament_checked == "Checked")
 data2 <- data_tidy[ind_keep,]
 
 table(data2$tractament_tipus)
 ```
+</details>
+
+<p>-    Ara torna a fer table del nou data frame. Quin és el tractament més utilitzat?</p>
+
+<details>
+  <summary><span class="task-title">Solució</span></summary>
+```{r}
+table(data2$tractament_tipus)
+```
+</details>
+
+<p>-    Per visualitzar-ho en un gràfic de barres: (1) Defineix un objecte anomenat `taula_tractament` que sigui el resultat de `table()` transformat a data frame (2) Utilitza la funció `ggbarplot()`</p>
+
+<details>
+  <summary><span class="task-title">Solució</span></summary>
+```{r}
+taula_tractament <- data.frame(table(data2$tractament_tipus))
+
+ggbarplot(data = taula_tractament, x = "Var1", y = "Freq")
+```
+</details>
+
 
 ```{r}
 table(data2$record_id)
@@ -1054,18 +1140,6 @@ data3 <- data2[-ind_dpl,]
 table(data3$tractament_tipus)
 ```
 
-```{r}
-data2 %>%
-  group_by(record_id) %>%
-  count(tractament_tipus)
-```
-
-
-```{r}
-table(data2$tractament_tipus)
-```
-</details>
-<br> 
 
 </div>
 

@@ -11,3 +11,6 @@ Encoding: UTF-8
 
 RnwWeave: Sweave
 LaTeX: pdfLaTeX
+
+BuildType: Website
+WebsitePath: C:/Users/10033834/Universitat de Vic/Recerca MPT-Equip - General/10. Transferencia/Curs Althaia/curs_r_althaia
