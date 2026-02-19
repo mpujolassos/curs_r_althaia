@@ -578,6 +578,17 @@ Ara mira la finestra de "*Environment*" d'RStudio. Allà hi pots veure tots els 
 
 ### Exercicis {-}
 
+<div class="task-box">
+  <div class="task-title">Per practicar!</div>
+  
+  <p>-   Crea tres objectes: (I) `nom` amb el teu nom, (II) `edat` amb una edat, (III) `sanitaria` amb TRUE o FALSE.</p>
+  
+  <p>-   Comprova la classe de cada objecte.</p>
+  
+  <p>-   Canvia `edat` a caràcter amb la funció `as.character(edat)` i explica què passa quan proves edat + 1.</p>
+
+</div>
+
 Els següents exercicis s'han extret del llibre *R for Data Science (II edició)*, estrit per Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. [[2](https://r4ds.hadley.nz/)]
 
 <div class="task-box">
