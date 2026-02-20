@@ -768,9 +768,9 @@ En el codi anterior:
 -   `names_pattern = "attempt(\\d+)_(.*)"` divideix els noms de les columnes en (I part) el número d’intent (abans de `_` busca un o més dígits, `\\d+`), i (II part) el nom de la variable (després de `_` busca qualsevol cadena de caràcters, `.*`)
 
 
-## Cas pràctic
+## Cas pràctic des de RedCap a R
 
-Per concloure la sessió ens posarem mans a l'obra amb dades d'exemple d'un projecte sobre càncer de còlon. En aquest cas pràctic s'hauran d'importar les dades, explorar les variables i organitzar el data frame per tal de respondre a les preguntes de recerca específiques. 
+Per concloure la sessió ens posarem mans a l'obra amb dades d'un projecte sobre càncer de còlon. En aquest cas pràctic s'hauran d'importar les dades, explorar les variables i organitzar el data frame per tal de respondre a les preguntes de recerca específiques. 
 
 ### Importar les dades a R
 
@@ -790,28 +790,26 @@ knitr::include_graphics("img/data_download.png")
 
 Al descarregar les dades, es descarreguen dos fitxers:
 
--   `CursIntroducciAR-Interval_DATA_2026-01-07_1541`: fitxer .csv (comma separated value) que conté les dades
+-   `CursIntroducciAR-CRC_DATA`: fitxer .csv (comma separated value) que conté les dades
 
--   `CursIntroducciAR-Interval_R_2026-01-07_1541`: fitxer .R que conté el codi amb R per carregar les dades directament.
+-   `CursIntroducciAR-CRC_R`: fitxer .R que conté el codi amb R per carregar les dades directament.
 
-Pel cas pràctic que farem a continuació no realitzarem aquests passos de descàrrega des de REDCap, i per tant, podeu trobar aquests dos fitxers al següent [link](adreça_al_github_dades_CursIntroduccióAR)).
+Pel cas pràctic que farem a continuació no realitzarem aquests passos de descàrrega des de REDCap, i per tant, podeu trobar aquests dos fitxers al següent [link](https://github.com/mpujolassos/curs_r_althaia/tree/main/data)).
 
 **Importar les dades a R**
 
-Per carregar les dades (fitxer *CursIntroducciAR-Interval_DATA_2026-01-07_1541.csv*) utilitzarem directament el codi descrit a *CursIntroducciAR-Interval_R_2026-01-07_1541.R*. Obrim l'script d'R amb RStudio, definim el directori de treball i executem totes les línies de codi.
+Per carregar les dades (fitxer *CursIntroducciAR-CRC_DATA.csv*) utilitzarem directament el codi descrit a *CursIntroducciAR-CRC_R.R*. Obrim l'script d'R amb RStudio, definim el directori de treball i executem totes les línies de codi.
 
-1.   **Directori de treball**: És la carpeta des d'on R ha de treballar. Normalment és la carpeta on hi guardes els scripts i les dades del projecte amb el qual treballes. L'organització de les carpetes i subcarpetes és molt important quan es treballa amb codi, ja que s'ha d'indicar al programa exactament on ha d'anar a buscar les dades. El directori de treball es defineix amb la funció `setwd()`. Dins de la funció s'hi escriu tot el camí fins a arribar a la carpeta desitjada. Per exemple:
-```{r eval=FALSE, include=TRUE}
-setwd("C:/Users/Universitat de Vic/Curs R Althaia/sessio2_caspractic")
-```
+**Executar el codi**. Mirem en detall què fan les diferents línies d'aquest codi:
 
-Dins de la carpeta *sessio2_caspractic* hi ha els fitxers *CursIntroducciAR-Interval_DATA_2026-01-07_1541.csv* i *CursIntroducciAR-Interval_R_2026-01-07_1541.R*.
+-   Línies del codi 1-7: 
 
-En el cas que no sàpigues exactament qui és el camí per arribar a la teva carpeta pots utilitzar els boton de RStudio: `Session` > `Set Working Directory` > `Choose directory...` > Selecciona la teva carpeta.
+  -   `rm()` i `graphics.off()`: eliminen qualsevol cosa que hi hagi carregat a *Environment* o *Plots*. 
+  
+  -   `library()`: carrega a la sessió el paquet `Hmisc`, el qual és necessari per carregar les dades correctament. 
+  
+  -   `read.csv()`: carrega el fitxer amb les dades. Perquè R trobi el fitxer, hem d'escriure el camí de carpetes que l'ordinador ha de seguir fins arribar a ell (indicat com [...]/nom_fitxer en el codi de sota). La carpeta on hi ha les dades l'anomanem *working directory*, ja que és la carpeta des d'on treballarem. Per exemple, si has guardat les dades a una carpeta de l'escriptori anomenada sessio2_caspractic, el camí fins el directori de treball seria: `C:/Escriptori/sessio2_capractic`. En el cas que no sàpigues exactament qui és el camí per arribar a la teva carpeta pots utilitzar els boton de RStudio: `Session` > `Set Working Directory` > `Choose directory...` > Selecciona la teva carpeta.
 
-2.    **Executar el codi**. Mirem en detall què fan les diferents línies d'aquest codi:
-
--   Línies del codi 1-7: Les primeres dues funcions eliminen qualsevol cosa que hi hagi carregat a *Environment* o *Plots*. A continuació, la funció `library()` carrega a la sessió el paquet `Hmisc`, el qual és necessari per carregar les dades correctament. Finalment, `read.csv()` carrega el fitxer amb les dades.
 ```{r eval=FALSE, include=TRUE}
 #Clear existing data and graphics
 rm(list=ls())
@@ -821,7 +819,7 @@ graphics.off()
 library(Hmisc)      # Si no el tens instal·lat ho hauràs de fer amb install.packages(Hmisc)
 
 #Read Data
-data=read.csv('CursIntroducciAR-Interval_DATA_2026-01-07_1541.csv')
+data=read.csv('[....]/CursIntroducciAR-Interval_DATA.csv')
 ```
 
 -   Setting Labels: introdueix per cada columna, un nom (etiqueta) més explicatiu i fàcil de llegir.
@@ -843,7 +841,7 @@ levels(data$pdpccr.factor)=c("Sí, PDSOH+","Sí, vigilancia estándar/vigilancia
 Després d'executar totes les files apareixerà un objecte al teu *Environment* anomenat `data`. Clica sobre el seu nom o bé exacuta `View(data)` per visualitzar en una pestanya les dades.
 
 ```{r include=FALSE}
-source("data/CursIntroducciAR-Interval_R_2026-01-07_1541.R")
+source("data/CursIntroducciAR-CRC_R.R")
 ```
 
 ### Esctructura general de dataframe
@@ -892,7 +890,7 @@ ind.fct <- which(endsWith(colnames(data), ".factor")) # definim un vector amb le
 
 colnames(data)[ind.fct] # seleccionem els índex del vector colnames(data) definides a ind.fct
 
-colnames(data)[64:112] # si coneixem exactament l'índex de la primera i última columna
+colnames(data)[63:111] # si coneixem exactament l'índex de la primera i última columna
 
 ```
 </details>
@@ -904,7 +902,7 @@ colnames(data)[64:112] # si coneixem exactament l'índex de la primera i última
 ```{r}
 # data[files, columnes]
 data[1:5, ind.fct]
-data[1:5, 64:112]
+data[1:5, 63:111]
 ```
 </details>
 
@@ -1010,7 +1008,7 @@ knitr::include_graphics("img/dollar.png")
 
 <br>
 
-Acabem de veure que hi ha una gran quantitat d'informació, que anirem analitzant durant les diferents sessions. ara però, ens centrarem en els diferents tipus de diagnòstic. Una possible via a explorar podria fer referència al tractament:
+Acabem de veure que hi ha una gran quantitat d'informació, que anirem analitzant durant les diferents sessions. Per començar però, ens centrarem en només una variable. Una possible via a explorar podria fer referència al tractament:
 
 <div class="research-question-box"> 
   <div class="rq-title"> Pregunta de recerca</div>
@@ -1042,7 +1040,7 @@ label(data$tractament___9)
 Els tractaments es classifiquen en: (0) Rebuig, (1) Sense tractament/Tractament simpomàtic pal·liatiu, (2) Radioteràpia, (3) Quimioteràpia, (4) Resecció local, (5) Cirurgia, (6) Immunoteràpia, (7) Teràpia dirigida, (9) Desconegut
 </details>
 
- <p>-   Crea un nou data frame anomenat `data_tidy` que contingui una columna amb la informació continguda als noms de les columnes "tractament___0.factor", ..., "tractament___9.factor". Per tant, aquesta nova columna, que podem anomenar `tractament_tipus` contindrà la informació sobre el tipus de tractament. Utilitza la funció `pivot_longer()`i pensa quins han de ser els argument de `cols = `, `names_to = ` i `values_to =` </p>
+ <p>-   Crea un nou data frame anomenat `data_tidy` que contingui una columna amb la informació continguda als noms de les columnes "tractament___0.factor", ..., "tractament___9.factor". Per tant, aquesta nova columna, que podem anomenar `tractament_tipus` informarà sobre el tipus de tractament. Utilitza la funció `pivot_longer()`i pensa quins han de ser els argument de `cols = `, `names_to = ` i `values_to =` </p>
 
 <details>
   <summary><span class="task-title">Solució</span></summary>
@@ -1057,9 +1055,9 @@ data_tidy <- data %>%
              "tractament___5.factor",
              "tractament___6.factor",
              "tractament___7.factor",
-             "tractament___9.factor"), # columnes originals que contenen informació sobre el nombre de pòlips
-    names_to = c("tractament_tipus"), # com volem anomenar la variable que contindrà la informació del nom de les columnes (tractament___0, 1, ...)
-    values_to = "tractament_checked" # com volem anomenar la variable que contindrà la informació sobre el nombre de pòlips
+             "tractament___9.factor"), # columnes originals que volem pivotar
+    names_to = c("tractament_tipus"), # com volem anomenar la variable que contindrà la informació del nom de les columnes que pivotarem (tractament___0, 1, ...)
+    values_to = "tractament_checked" # com volem anomenar la variable que contindrà els valors continguts a les columnes originals que pivotarem 
   )
 ```
 
@@ -1080,7 +1078,7 @@ Han disminuit el nombre de columnes respecte el data frame original (105), però
 
 <details>
   <summary><span class="task-title">Solució</span></summary>
-  la funció `pivot_longer()` pivota les columnes tractament___0-9 a una única columna anomenada `tractament_tipus`. Per fer-ho ompla la columna inserint files per cada individu amb els valors de tractament___0 fins tractament___9 . La columna `tractament_checked` conté la informació de si aquell tractament es va dur a terme ("Checked") o no ("Unchecked").
+  la funció `pivot_longer()` pivota les columnes tractament___0-9 a una única columna anomenada `tractament_tipus`. Per fer-ho omple la columna inserint una fila per cada individu amb els valors de tractament___0 fins tractament___9 . La columna `tractament_checked` conté la informació de si aquell tractament es va dur a terme ("Checked") o no ("Unchecked").
 ```{r}
 data_tidy[1:20,c("tractament_tipus", "tractament_checked")]
 ```
@@ -1120,7 +1118,7 @@ table(data2$tractament_tipus)
 ```
 </details>
 
-<p>-    Per visualitzar-ho en un gràfic de barres: (1) Defineix un objecte anomenat `taula_tractament` que sigui el resultat de `table()` transformat a data frame (2) Utilitza la funció `ggbarplot()`</p>
+<p>-    Per visualitzar-ho en un gràfic de barres: (1) Defineix un objecte anomenat `taula_tractament` que sigui el resultat de `table()` transformat a data frame (2) Utilitza la funció `ggbarplot()` per crear el gràfic</p>
 
 <details>
   <summary><span class="task-title">Solució</span></summary>

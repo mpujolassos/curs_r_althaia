@@ -29,7 +29,7 @@ organització-de-les-dades
 una-columna-una-variable
 noms-de-columnes-que-contenen-més-duna-variable
 noms-de-columnes-que-contenen-noms-i-valors-de-variables
-cas-pràctic
+cas-pràctic-des-de-redcap-a-r
 importar-les-dades-a-r
 esctructura-general-de-dataframe
 re-organització-dalgunes-columnes-en-una-variable

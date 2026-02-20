@@ -4,12 +4,11 @@ graphics.off()
 #Load Hmisc library
 library(Hmisc)
 #Read Data
-data=read.csv('C:/Users/10033834/Universitat de Vic/Recerca MPT-Equip - General/10. Transferencia/Curs Althaia/intro-R-book/data/CursIntroducciAR-Interval_DATA_2026-01-07_1541.csv')
-#Setting Labels
+data=read.csv('C:/Users/10033834/Universitat de Vic/Recerca MPT-Equip - General/10. Transferencia/Curs Althaia/curs_r_althaia/data/CursIntroducciAR-CRC_DATA.csv')
 
+#Setting Labels
 label(data$record_id)="Record ID"
 label(data$nccr)="NCCR"
-label(data$expedient)="Expedient"
 label(data$pdpccr)="Diagnosticat a través del PDPCCR?"
 label(data$ultima_invitacion)="Última invitació"
 label(data$sexe)="Sexe:"
@@ -173,5 +172,5 @@ levels(data$ostomia_tipu.factor)=c("Permanent","Transitòria")
 levels(data$estat_contc.factor)=c("Viu","Mort")
 levels(data$causa_exitus.factor)=c("Èxitus degut al càncer","Èxitus per altres motius","Desconegut")
 levels(data$cncer_clon_i_recte_complete.factor)=c("Incomplete","Unverified","Complete")
-data
+
 
