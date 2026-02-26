@@ -128,7 +128,7 @@ c(5:10) # és el mateix (números consecutius)
 ```
 </details><br>
 
-  <p>-    Crea un vector dels noms dels gens PAX6,ZIC2,OCT4 i SOX2. Quin tipus de vector és?</p>
+  <p>-    Crea un vector amb els noms dels gens PAX6, ZIC2, OCT4 i SOX2. Quin tipus de vector és?</p>
 
 <details>
   <summary><span class="task-title">Solució</span></summary>
@@ -509,7 +509,7 @@ list_data[[1]] # Quina diferència hi ha respecte la línia anterior?
 ```
 
 
-### Exercicis
+### Exercicis {-}
 
 <div class="task-box">
   <div class="task-title"> Per practicar!</div>
@@ -561,6 +561,8 @@ Fins ara hem pogut treballar amb funcions base d'R, però a partir d'ara ens far
 ```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
 install.packages("tidyverse")
 ```
+
+
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
@@ -798,7 +800,7 @@ Pel cas pràctic que farem a continuació no realitzarem aquests passos de desc�
 
 **Importar les dades a R**
 
-Per carregar les dades (fitxer *CursIntroducciAR-CRC_DATA.csv*) utilitzarem directament el codi descrit a *CursIntroducciAR-CRC_R.R*. Obrim l'script d'R amb RStudio, definim el directori de treball i executem totes les línies de codi.
+Per carregar les dades (fitxer *CursIntroducciAR-CRC_DATA.csv*) utilitzarem directament el codi descrit a *CursIntroducciAR-CRC_R.R*. Obrim l'script amb RStudio, definim el directori de treball i executem totes les línies de codi.
 
 **Executar el codi**. Mirem en detall què fan les diferents línies d'aquest codi:
 
@@ -808,7 +810,7 @@ Per carregar les dades (fitxer *CursIntroducciAR-CRC_DATA.csv*) utilitzarem dire
   
   -   `library()`: carrega a la sessió el paquet `Hmisc`, el qual és necessari per carregar les dades correctament. 
   
-  -   `read.csv()`: carrega el fitxer amb les dades. Perquè R trobi el fitxer, hem d'escriure el camí de carpetes que l'ordinador ha de seguir fins arribar a ell (indicat com [...]/nom_fitxer en el codi de sota). La carpeta on hi ha les dades l'anomanem *working directory*, ja que és la carpeta des d'on treballarem. Per exemple, si has guardat les dades a una carpeta de l'escriptori anomenada sessio2_caspractic, el camí fins el directori de treball seria: `C:/Escriptori/sessio2_capractic`. En el cas que no sàpigues exactament qui és el camí per arribar a la teva carpeta pots utilitzar els boton de RStudio: `Session` > `Set Working Directory` > `Choose directory...` > Selecciona la teva carpeta.
+  -   `read.csv()`: carrega el fitxer amb les dades. Perquè R trobi el fitxer, hem d'escriure el camí de carpetes que l'ordinador ha de seguir fins arribar a ell (indicat com [...]/nom_fitxer en el codi de sota). La carpeta on hi ha les dades l'anomanem *working directory*, ja que és la carpeta des d'on treballarem. Per exemple, si has guardat les dades a una carpeta de l'escriptori anomenada sessio2_caspractic, el camí fins el directori de treball seria: `C:/Escriptori/sessio2_capractic`. En el cas que no sàpigues exactament quin és el camí per arribar a la teva carpeta pots utilitzar els boton de RStudio: `Session` > `Set Working Directory` > `Choose directory...` > Selecciona la teva carpeta.
 
 ```{r eval=FALSE, include=TRUE}
 #Clear existing data and graphics
@@ -819,7 +821,7 @@ graphics.off()
 library(Hmisc)      # Si no el tens instal·lat ho hauràs de fer amb install.packages(Hmisc)
 
 #Read Data
-data=read.csv('[....]/CursIntroducciAR-Interval_DATA.csv')
+data=read.csv('[....]/CursIntroducciAR-_DATA.csv')
 ```
 
 -   Setting Labels: introdueix per cada columna, un nom (etiqueta) més explicatiu i fàcil de llegir.
@@ -1130,6 +1132,16 @@ ggbarplot(data = taula_tractament, x = "Var1", y = "Freq")
 </details>
 
 </div>
+
+## Exportar la feina feta
+
+Segurament en algun punt del projecte en el que estiguis treballant voldràs parar i continuar en un altre moment. Per guardar els objectes que has anat generant fins al moment tens diferents opcions:
+
+-   Guardar l'*Enviornment*: `save.image("C:/Users/Desktop/sessio2.RData")`
+
+-   Guardar data frames especifics que haigs creat en forma de taula de dades (en format .csv o .txt, per exemple): `write.csv2(data_tidy, "C:/Users/Desktop/CursIntroducciAR-CRC_DATA_tidy.csv")`
+
+Aquestes són dues alternatives que generen dos tipus de fitxers molt diferents: la primera guarda tots els objectes de l'ambient de treball i només es pot obrir amb R, en canvi la segona guarda una taula de dades concreta en format de text que es pot obrir des d'altres programes com per exemple excel. En funció de les teves necessitats, pots optar de guardar la feina fet d'una manera o d'una altra.
 
 
 ## Bibliografia
