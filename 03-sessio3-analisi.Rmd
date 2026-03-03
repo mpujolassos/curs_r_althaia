@@ -55,7 +55,7 @@ library(gtsummary)
 
 ## Exploració d'una variable contínua
 
-**Variabla numèrica**: és aquella que pren valors numèrics. Se'n distingeixen dos tipus:
+**Variable numèrica**: és aquella que pren valors numèrics. Se'n distingeixen dos tipus:
 
   -   **Numèrica discreta**: els seus valors no són infinits, sinó que són nombres enters
 <div class="session-desc">
@@ -382,40 +382,52 @@ ggscatter(data = laryngo, x = "age", y = "attempt1_time",
   stat_cor() # quin coeficient calcula per defecte?
 ```
 
-I en el cas que volguéssim veure diferències entre els dos mètodes, per exemple...
+
+
+## Relació entre tres o més variables
+
+I en el cas que volguéssim veure la relació entre (1) edat i (2) temps d'intubació en els (3) mètodes. En aquest cas hi ha tres variables involucrades
 
 <div class="research-question-box"> 
   <div class="rq-title"> Pregunta de recerca</div>
   <div> La relació entre el temps per intubar i l'edat és igual en els dos mètodes?</div>
 </div>
 
+<br>
+
 Recorda que la variable `Randomization` és la que determina els dos mètodes d'intubació utilitzats. Cal transformar-la a factor abans de res:
 ```{r}
 laryngo$metode.fct <- factor(laryngo$Randomization, levels = c(0,1), labels = c("Standard Macintosh #4", "AWS Pentaz Video"))
 ```
 
-Afegint color al gràfic podem distingir entre els dos mètodes:
+Afegint color al gràfic de la relació edat-temps podem distingir entre els dos mètodes:
 ```{r}
 ggscatter(data = laryngo, x = "age", y = "attempt1_time",
           color = "metode.fct",
           add = "reg.line")+
-  stat_cor(aes(color = metode.fcy)) # quin coeficient calcula per defecte?
+  stat_cor(aes(color = metode.fct)) # quin coeficient calcula per defecte?
 ```
-## Relació entre tres o més variables
+
+<br>
+
 Seguint amb l'exemple anterior, si ens plantegem la següent pregunta:
+
 <div class="research-question-box"> 
   <div class="rq-title"> Pregunta de recerca</div>
-  <div> La relació entre el temps per intubar i l'edat és igual en els dos mètodes i en ambós sexes?</div>
+  <div> La relació entre el temps per intubar i l'edat és igual en els dos mètodes i en ambdós sexes?</div>
 </div>
 
-Similar al color, la forma dels punts és una bona eina per afegir una capa d'informació al gràfic:
+
+Similar al color, la forma dels punts és una bona eina per afegir una capa més d'informació al gràfic:
 ```{r}
+laryngo$sexe.fct <- factor(laryngo$gender, levels = c(0,1), labels = c("female", "male"))
+
 ggscatter(data = laryngo, x = "age", y = "attempt1_time",
           color = "metode.fct",
           add = "reg.line",
           shape = "sexe.fct")
 ```
-Tot i això, el gàfic anterior pot arribar a ser una mica confós. L'argument `facet_by = ` permet afegir la informació d'una tercera variable creant un gràfic per cada categoria d'aquesta última:
+Tot i això, el gàfic anterior pot arribar a ser una mica confós. L'argument `facet.by = ` permet afegir la informació d'una tercera variable creant un gràfic per cada categoria d'aquesta última:
 ```{r}
 ggscatter(data = laryngo, x = "age", y = "attempt1_time",
           color = "metode.fct",

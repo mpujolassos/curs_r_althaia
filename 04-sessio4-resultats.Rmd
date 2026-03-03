@@ -1,4 +1,4 @@
-# Comunicació de resultats i visualització avançada
+# Visualització avançada i comunicació de resultats
 
 <div class="objectius-box">
   <h3>Objectius de la sessió</h3>
@@ -23,7 +23,8 @@ La visualització d'aquesta tipologia de dades és mitjançant un gràfic de lí
 <div class="research-question-box"> 
   <div class="rq-title"> Pregunta de recerca</div>
   <div> El nombre de pòlips disminueix amb el temps després del tractament?</div>
-  
+</div>
+
 Primer carreguem el paquet
 ```{r}
 polyps <- medicaldata::polyps
@@ -78,10 +79,12 @@ library(ggplot2)
 ```
 
 La sintaxi de les funcions ggplot2 és la següent:
+
 ```
 ggplot(data = df, mapping = aes(x, y, other aesthetics)) +
   geom_nomgrafic()
 ```
+
 La base del gràfic es defineix dins de la funció `ggplot()`:
 -   `data` ha de ser un data frame
 

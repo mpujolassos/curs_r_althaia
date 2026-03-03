@@ -43,10 +43,11 @@ visualització-gràfica-1
 exercicis-i
 relació-entre-dues-variables-una-discreta-i-una-contínua
 relació-entre-dues-variables-categòriques
-representació-de-la-relació-entre-dues-variables-contínues
+relació-entre-dues-variables-contínues
+relació-entre-tres-o-més-variables
 exercicis-ii
-comunicació-de-resultats-i-visualització-avançada
-objectius
+guardar-els-gràfics
+visualització-avançada-i-comunicació-de-resultats
 representació-de-dades-aparellades-o-longitudinals
-altres-representacions
-heatmaps
+el-món-ggplot2
+altres-representacions-originals
