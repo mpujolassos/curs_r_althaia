@@ -3,17 +3,19 @@
 <div class="objectius-box">
   <h3>Objectius de la sessió</h3>
   
--   Anàlisi descriptiva
+-   Identificar la tipologia de variable
+  
+-   Realitzar l'anàlisi descriptiva adient en cada cas
 
--   Visualització uni i bivariant
+-   Explorar i visualitzar la variabilitat d'una sola variable
 
--   Altres visualitzacions
+-   Explorar i visualitzar la relació entre dues o més variables 
+
+-   Crear gràfics i guardar-los en format d'imatge
 
 </div>
 
-A la primera sessió hem vist un tipus de gràfic, concretament un gràfic de dispersió. Aquest s'utilitza quan volem visualitzar l'associació entre dues variables numèriques contínues, com per exemple, el temps d'intubació i l'edat dels pacients. A la segona sessió hem vist la representació gràfica del recompte d'una variable categòrica mitjançant un gràfic de barres. Per tant, no totes les variables es poden representar amb el mateix gràfic, i tampoc mitjançant el mateix tipus de resum numèric.
-
-Un cop haguem identificat i definit les nostres variables ens hauriem de preguntar un parell de preguntes per tal de començar-ne l'exploració:
+Quan volem analitzar una variable ens hauriem de preguntar un parell de preguntes per tal de començar-ne l'exploració:
 
 -   Quin tipus de variabilitat hi ha dins la meva variable?
 
@@ -28,24 +30,47 @@ Una mateixa variable pot pendre diferents valors per cada mesura, i per tant, ca
 source("data/CursIntroducciAR-CRC_R.R")
 ```
 
+## Posada a punt de la sessió
+
+Abans de començar preparem la sessió:
+
+1.    Definim el directori de treball: `setwd(cami/fins/a/la/carpeta/on/hi/ha/les/dades)`
+
+2.    Carreguem les dades: Podem obrir el fitxer *CursIntroducciAR-CRC_R.R* del projecte de RedCap i executar-ne totes les línies, o bé executar el codi `source("CursIntroducciAR-CRC_R.R")` a l'script on estiguis treballant. La funció `source()` executa totes les línies del fitxer .R indicat.
+
+3.    Paquets o llibreries que utilitzarem durant la sessió: Si cal, instal·la els paquets nous i carrega'ls tots a la sessió mitjançant `library()`.
+```{r echo=TRUE, eval = FALSE}
+# Paquets per instal·lar
+install.packages("gtsummary")
+```
+
+```{r message=FALSE, warning=FALSE}
+# Carregar les llibreries
+library(tidyverse)
+library(ggpubr)
+library(medicaldata)
+library(gtsummary)
+```
+
+
 ## Exploració d'una variable contínua
 
-**Variabla numèrica**: és aquella que pren valors numèrics. Se'n distingeixen de dos tipus:
+**Variabla numèrica**: és aquella que pren valors numèrics. Se'n distingeixen dos tipus:
 
-    -   **Numèrica discreta**: els seus valors no són infinits, sinó que són nombres enters
+  -   **Numèrica discreta**: els seus valors no són infinits, sinó que són nombres enters
 <div class="session-desc">
 Nombre d'intents: 1, 2, 3</div>
 
 
-    -   **Numèrica contínua**: els seus valors poden ser infinits
+  -   **Numèrica contínua**: els seus valors poden ser infinits
 <div class="session-desc">
-edat en el diagnòstic</div>
+Edat en el diagnòstic</div>
 
 <br>
 
 ### Resum numèric {-}
 
-La forma de "resumir" una variable numèrica és mitjançant paràmetres estadístics descriptius que informen de la **centralitat** i **variabilitat** de la variable. Per conèixer els valors més comuns de la variable podem definir-ne la moda, la mitjana o la mediana. Per saber quant de variable és en podem calcular el mínim, el màxim, la desviació típica o el rang interquartíl·lic.
+La forma de "resumir" una variable numèrica és mitjançant paràmetres estadístics descriptius que informen de la **centralitat** i **variabilitat** de la variable. Per conèixer els valors més comuns (centralitat) de la variable podem definir-ne la moda, la mitjana o la mediana. Per saber quant de variable  és (variabilitat) en podem calcular el mínim, el màxim, la desviació típica o el rang interquartíl·lic.
 
 Existeixen moltes funcions amb R calcular aquests resums numèrics. Les funcions base d'R són una opció:
 ```{r}
@@ -60,7 +85,6 @@ var(data$edat_diagn)
 
 IQR(data$edat_diagn)
 quantile(data$edat_diagn)
-
 ```
 
 `summary()` és una de les funcions bases d'R que permet fer resums numèrics simples:
@@ -68,22 +92,18 @@ quantile(data$edat_diagn)
 ```{r}
 summary(data$edat_diagn)
 ```
+
 La funció `tbl_summary()` del paquet `gtsummary` és una bona opció per obtenir una taula bonica amb el resum numèric de la variable. Pots consultar `?gtsummary` per veure les diferents opcions que permet.
 
 ```{r}
-#install.packages(gtsummary)
-library(gtsummary)
 tbl_summary(data, include = edat_diagn)
 ```
 
-
-
-
 ### Visualització gràfica {-}
 
-La visualització de distribucions d'una sola variable contínua es pot fer  através d'un histograma o bé de la seva funció de densitat.
+La visualització de distribucions d'una sola variable contínua es pot fer a través d'un histograma.
 
-Les funcions de `ggpubr` per fer-ho són:
+La funció de `ggpubr` per fer-ho són:
 
 
 ```{r message=FALSE, warning=FALSE, include=TRUE, echo = FALSE}
@@ -92,23 +112,11 @@ gghistogram(data, x = "edat_diagn",
 ```
 
 
-```{r message=FALSE, warning=FALSE, include=TRUE, echo = FALSE}
-ggdensity(data, x = "edat_diagn", title = "Funció de densitat")
-```
-
-```{r}
-a <- gghistogram(data, x = "edat_diagn", 
-            title = "Histograma")
-b <- ggdensity(data, x = "edat_diagn", title = "Funció de densitat")
-
-ggarrange(a, b, nrow = 1)
-```
-
 ## Exploració d'una variable categòrica
 
 **Variabla categòrica**: els seus valors són categories.
 
-    -   **Categòrica nominal**: les categories de la variable no segueixen un ordre predefinit.
+  -   **Categòrica nominal**: les categories de la variable no segueixen un ordre predefinit.
 <div class="session-desc">
   Sexe: Home/Dona</div>
 <div class="session-desc">
@@ -116,7 +124,7 @@ ggarrange(a, b, nrow = 1)
 <div class="session-desc">
   Tipus de tractament: Rebuig, Sense tractament/Tractament simpomàtic pal·liatiu, Radioteràpia, Quimioteràpia, Resecció local, Cirurgia, Immunoteràpia, Teràpia dirigida, Desconegut</div>
 
-    -   **Categòrica ordinal**: les categories de la variable segueixen un order concret i lògic
+  -   **Categòrica ordinal**: les categories de la variable segueixen un order concret i lògic
 <div class="session-desc">
 Estadi clínic: 0, I, II, IIA, IIB, IIC, III, IIIA, IIIB, IIIC, IV, Desconegut</div>
 
@@ -152,19 +160,76 @@ I després crear el gràfic a partir de la taula de freqüències:
 ```{r}
 ggbarplot(data = freq_estadi, x = "Var1", y = "Freq")
 ```
-### Exercicis
-Fer barplot de les freqüències relatives
+
+## Exercicis (I)
+
+<div class="task-box">
+  <div class="task-title"> Per practicar!</div>
+
+<p>-   Fes una taula resumint les variables `sexe.factor`, `edat_diagn`, `morfologia.factor`. Utilitza la funció `tbl_summary()`  </p>
+
+<details>
+  <summary><span class="task-title">Solució</span></summary>
+```{r}
+tbl_summary(data, include = c(sexe.factor, edat_diagn, morfologia.factor))
+```
+</details><br> 
+
+<p>-   Re-escriu els títols de les variables per ser presentables a un informe. Ajuda't de la funció `?tbl_summary()`</p>
+
+<details>
+  <summary><span class="task-title">Solució</span></summary>
+```{r}
+tbl_summary(data, include = c(sexe.factor, edat_diagn, morfologia.factor),
+            label = list(sexe.factor = "Sexe",
+                         edat_diagn = "Edat",
+                         morfologia.factor = "Morfologia")) %>%
+  modify_header(label ~ "**Variable**") 
+```
+
+<p>-   Afegeix al codi anterior `%>% modify_header(label ~ "**Variable**")`. Què passa?</p>
+
+<details>
+  <summary><span class="task-title">Solució</span></summary>
+```{r}
+tbl_summary(data, include = c(sexe.factor, edat_diagn, morfologia.factor),
+            label = list(sexe.factor = "Sexe",
+                         edat_diagn = "Edat",
+                         morfologia.factor = "Morfologia")) %>%
+  modify_header(label ~ "**Variable**") 
+```
+</details><br> 
+
+<p>-   Representa les freqüències relatives d'homes i dones d'aquest estudi amb un gràfic de barres.</p>
+
+<details>
+  <summary><span class="task-title">Solució</span></summary>
+```{r}
+sexe_freq <- data.frame(prop.table(table(data$sexe.factor)))
+ggbarplot(sexe_freq[-3,], x= "Var1", y = "Freq",
+          xlab = "",
+          ylab = "Freqüència")
+```
+</details><br> 
+
+</div>
+
+A la pàgina web del paquet [gtsummary](https://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html#introduction) pots consultar totes les possibilitats que ofereix.
+<br>
 
 
-## Representació de la relació entre dues variables: una discreta i una contínua
 
-A banda d'analitzar el comportament (variabilitat) d'una sola variable, segurament també ens interessa veure el comportament entre variables. La tendència dels valors de dues o més variables de variar conjuntament s'anomena covariància. En funció de la tipologia de variables, la relació entre elles s'explorarà d'una manera o d'una altra
+
+## Relació entre dues variables: una discreta i una contínua
+
+A banda d'analitzar el comportament d'una sola variable, segurament també ens interessa veure el comportament entre variables. La tendència dels valors de dues o més variables de variar conjuntament s'anomena covariància. En funció de la tipologia de variables, la relació entre elles s'explorarà d'una manera o d'una altra
 
 <div class="research-question-box"> 
   <div class="rq-title"> Pregunta de recerca</div>
   <div> Com varia l'edat en funció del sexe dels pacients diagnosticats?</div>
-  
-### Resums numèrics{-}
+</div>
+
+### Resum numèric{-}
 
 En el cas que una de les variables sigui numèrica i l'altre categòrica, haurem d'explorar la variable numèrica dins de cada categoria de la variable categòrica. Per tant, podem elaborar resums numèrics (de la variable numèrica) per cada categoria (de la variable categòrica).
 
@@ -179,7 +244,9 @@ Tot i que el format del resultat no és molt bonic, queda't amb aquesta funció 
 
 Altres opcions més estètiques amb la funció `tbl_summary()`:
 ```{r}
-tbl_summary(data, include = edat_diagn, by = "sexe.factor")
+tbl_summary(data,                  # data frame on hi ha la/les variables
+            include = edat_diagn,  # variable(s) que es volen resumir
+            by = "sexe.factor")    # factor que defineix les diferents categories/grups d'estudi
 ```
 
 
@@ -190,32 +257,44 @@ La visualització de les distribucions d'una variable numèrica per cada grup o 
 ggboxplot(data, x  = "sexe.factor", y = "edat_diagn")
 ```
 
-I les seves variants:
-```{r}
-# Gràfic de violí
-ggviolin(data, x  = "sexe.factor", y = "edat_diagn")
-
-# Gràfic de punts
-ggdotplot(data, x  = "sexe.factor", y = "edat_diagn")
-```
-
-En el diagrama de caixes ens pot interessar afegir-hi totes les observacions en forma de punts. Ho fem amb l'argument `add =`:
+En el diagrama de caixes ens pot interessar afegir-hi totes les observacions en forma de punts. Ho fem amb l'argument `add =`. Pots consultar a la fitxa d'ajuda de la funció totes les opcions que s'hi poden afegir.
 ```{r}
 ggboxplot(data, x  = "sexe.factor", y = "edat_diagn",
-          add = "jitter") # jitter afegeix els punts al diagrama de caixes
+          add = "jitter") # "jitter" afegeix els punts al diagrama de caixes
 ```
-O el que és el mateix...
-```{r}
-ggstripchart(data, x  = "sexe.factor", y = "edat_diagn",
-          add = "boxplot") # boxplot afegeix les caixes a un diagrama de punts
+
+Alternatives al gràfic de caixes són el diagrama de violí o el diagrama de punts:
+```{r message=FALSE, warning=FALSE, include=TRUE, eval =FALSE}
+# Diagrama de violí
+ggviolin(data, x  = "sexe.factor", y = "edat_diagn",
+         title = "Diagrama de violí (violin plot)")
+
+# Diagrama de punts
+ggdotplot(data, x  = "sexe.factor", y = "edat_diagn",
+          title = "Diagrama de punts (dot plot)")
 ```
-## Representació de la relació entre dues variables categòriques
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Gràfic de violí
+a <- ggviolin(data, x  = "sexe.factor", y = "edat_diagn",
+         title = "Diagrama de violí (violin plot)")
+
+# Gràfic de punts
+b <- ggdotplot(data, x  = "sexe.factor", y = "edat_diagn",
+          title = "Diagrama de punts (dot plot)")
+ggarrange(a, b, nrow = 1)
+```
+
+
+
+## Relació entre dues variables categòriques
 
 Similar a explorar una variable categòrica, quan volem explorar la relació entre dues categòriques també hem de fer el recompte del nombre d'observacions corresponents a cada una de les combinacions de totes les categories dels dos factors. Per exemple, seguint dins del context del càncer de còlon i recte...
 
 <div class="research-question-box"> 
   <div class="rq-title"> Pregunta de recerca</div>
-  <div> El sexe i l'estadi clínic estan relacionats?</div>
+  <div> El sexe i l'estadi clínic estan relacionats? En homes (o en dones) es diagnostica el càncer en estadis més (o menys) avançats?</div>
+</div>
 
 ### Resum numèric{-}
 La taula de contingència per dues variables categòriques és una taula de freqüències de doble entrada. Aquesta taula té tantes columnes com categories d'una de les variables, i tantes files com categories de l'altra variable. Els valors de la taula corresponen al recompte d'observacions de totes les combinacions definides per les categories de les dues variables.
@@ -256,21 +335,29 @@ freq_estadi_sexe
 ggbarplot(data = freq_estadi_sexe, x = "Var2", y = "Freq", fill = "Var1")
 ```
 
-## Representació de la relació entre dues variables contínues
+En aquest cas, hi ha categories de l'estadi del càncer per les quals no hi ha cap observació. Per tal de visualitzar només les categories amb valors, podem utilitzar l'argument `select =`:
+```{r}
+is.na(freq_estadi_sexe$Freq)
+ggbarplot(data = freq_estadi_sexe, x = "Var2", y = "Freq", fill = "Var1",
+          select = c("0", "I", "II", "IIA", "IIB", "IIC", "IIIB", "IIIC", "IV"))
+```
+
+## Relació entre dues variables contínues
 
 Per exemplificar-ho recuperarem l'exemple de l'experiment sobre intubació orotraqueal.
 
 <div class="research-question-box"> 
   <div class="rq-title"> Pregunta de recerca</div>
   <div> Com varia el temps per intubar en funció de l'edat del pacient?</div>
-  
+</div>
+
 ### Resum numèric{-}
 La relació entre dues variables numèriques la podem explorar mitjançant el coeficient de correlació
 
 ```{r message=FALSE, warning=FALSE}
 # Carreguem les dades del paquet medicaldata
-library(medicaldata)
 laryngo <- medicaldata::laryngoscope
+
 # Calculem el coeficient de correlació
 cor(laryngo$age, laryngo$attempt1_time)
 ```
@@ -288,73 +375,147 @@ Núvol de punts o Diagrames de dispersió entre dues variables numèriques
 ggscatter(data = laryngo, x = "age", y = "attempt1_time") 
 ```
 
-Per afegir el coeficient de correlació dins del gràfic:
+Per afegir la línia i el coeficient de correlació dins del gràfic:
 ```{r}
-ggscatter(data = laryngo, x = "age", y = "attempt1_time")+
+ggscatter(data = laryngo, x = "age", y = "attempt1_time",
+          add = "reg.line")+
   stat_cor() # quin coeficient calcula per defecte?
 ```
 
-
-
-## Representació de dades aparellades o longitudinals
-
-Les dades aparellades o longitudinals són dissenys experimentals freqüents en medicina ja que permeten fer un seguiment del pacient i veure la seva evolució. La visualització i tractament d'aquestes dades però es mareix una atenció especial, ja que és molt important tenir clar que no es tracta de mesures totalment independents entre elles, sinó que provenen d'un mateix individu.
-
-La visualització d'aquesta tipologia de dades és mitjançant un gràfic de línies. Per exemplificar-ho utilitzarem el conjunt de dades `polyps` de `medicaldata`. 
+I en el cas que volguéssim veure diferències entre els dos mètodes, per exemple...
 
 <div class="research-question-box"> 
   <div class="rq-title"> Pregunta de recerca</div>
-  <div> El nombre de pòlips disminueix amb el temps després del tractament?</div>
-  
-Primer carreguem el paquet
+  <div> La relació entre el temps per intubar i l'edat és igual en els dos mètodes?</div>
+</div>
+
+Recorda que la variable `Randomization` és la que determina els dos mètodes d'intubació utilitzats. Cal transformar-la a factor abans de res:
 ```{r}
-polyps <- medicaldata::polyps
+laryngo$metode.fct <- factor(laryngo$Randomization, levels = c(0,1), labels = c("Standard Macintosh #4", "AWS Pentaz Video"))
 ```
 
-Després posem a punt el data frame per tenir una única columna amb el nombre de pòlips registrats a cada visita:
+Afegint color al gràfic podem distingir entre els dos mètodes:
 ```{r}
-polyps_long <- pivot_longer(polyps,
-                            cols = c(baseline, number3m, number12m),
-                            names_to = "visit",
-                            values_to = "n_polyps")
-polyps_long
+ggscatter(data = laryngo, x = "age", y = "attempt1_time",
+          color = "metode.fct",
+          add = "reg.line")+
+  stat_cor(aes(color = metode.fcy)) # quin coeficient calcula per defecte?
+```
+## Relació entre tres o més variables
+Seguint amb l'exemple anterior, si ens plantegem la següent pregunta:
+<div class="research-question-box"> 
+  <div class="rq-title"> Pregunta de recerca</div>
+  <div> La relació entre el temps per intubar i l'edat és igual en els dos mètodes i en ambós sexes?</div>
+</div>
+
+Similar al color, la forma dels punts és una bona eina per afegir una capa d'informació al gràfic:
+```{r}
+ggscatter(data = laryngo, x = "age", y = "attempt1_time",
+          color = "metode.fct",
+          add = "reg.line",
+          shape = "sexe.fct")
+```
+Tot i això, el gàfic anterior pot arribar a ser una mica confós. L'argument `facet_by = ` permet afegir la informació d'una tercera variable creant un gràfic per cada categoria d'aquesta última:
+```{r}
+ggscatter(data = laryngo, x = "age", y = "attempt1_time",
+          color = "metode.fct",
+          add = "reg.line",
+          facet.by = "sexe.fct")
 ```
 
-Seleccionem aquelles mostres que se'ls va administrar el tractament:
-```{r}
-polyps_long_tr <- polyps_long[which(polyps_long$treatment == "sulindac"), ]
+## Exercicis (II)
+
+<div class="task-box">
+  <div class="task-title"> Per practicar!</div>
+
+<p>-   Intenta reproduir el següent gràfic a partir de les dades de `laryngoscope`. Per fer-ho consulta l'ajuda de la funció del gràfic en qüestió:  </p>
+```{r echo=FALSE}
+laryngo$sexe.fct <- factor(laryngo$gender, levels = c(0,1), labels = c("F", "M"))
+ggboxplot(laryngo, x = "metode.fct", y = "attempt1_time",
+          color = "sexe.fct",
+          fill = "sexe.fct",
+          alpha = 0.2,
+          add = "jitter",
+          xlab = "Mètode d'intubació",
+          ylab = "Temps d'intubació (segons)"
+          )
+```
+<details>
+  <summary><span class="task-title">Solució</span></summary>
+```{r warning=FALSE, eval = FALSE}
+# Primer hem de transformar la variable gender a factor (si no la tens ja transformada)
+laryngo$sexe.fct <- factor(laryngo$gender, levels = c(0,1), labels = c("F", "M"))
+# El gràfic és un boxplot
+ggboxplot(laryngo, x = "metode.fct", y = "attempt1_time",
+          color = "sexe.fct", # colors de les línies del boxplot diferents en funció del sexe
+          fill = "sexe.fct",  # colors de dins dels boxplots diferents en funció del sexe
+          alpha = 0.2,        # afegim certa transperència dins del boxplot (qüestió estètica)
+          add = "jitter",     # afegim totes les observacions en forma de punts
+          xlab = "Mètode d'intubació",
+          ylab = "Temps d'intubació (segons)"
+          )
 ```
 
-Visualitzem el nombre de pòlips al llarg del temps en cada individu:
-```{r}
-ggpaired(data = polyps_long_tr, x = "visit", y = "n_polyps",
-         id = "participant_id")
-ggline(data = polyps_long_tr, x = "visit", y = "n_polyps",
-         id = "participant_id", color = "participant_id")
-```
+<p>-   Visualitza (numèricament i gràficament) la relació entre la mort deguda al càncer i el sexe dels pacients. Ajusta, si cal, els colors, les etiquetes dels eixos i dels títols.  </p>
 
-Amb aquest gràfic observem la tendència de cada individu, però com podem saber si el tractament ha tingut efecte?
-
-Per veure si el nombre de pòlips canvia al llarg del temps de mateixa manera en individus tractats
-dels no tractats, podem colorejar les observacions segons el tractament:
-
+<details>
+  <summary><span class="task-title">Solució</span></summary>
 ```{r message=FALSE, warning=FALSE}
-ggline(data = polyps_long, x = "visit", y = "n_polyps",
-         id = "participant_id", color = "treatment",
-       add = c("median_iqr", "jitter"))
+# numèricament (taula de contingència) - Funció tbl_summary()
+tbl_summary(data, include = estat_contc.factor, 
+            by = sexe.factor,
+            label = list(sexe.factor = "Sexe",
+                         estat_contc.factor = "Estat")) %>%
+  modify_header(label ~ "**Variable**") 
+
+# numèricament (taula de contingència) - Funció table()
+prop.table(table(data$estat_contc.factor, data$sexe.factor), 2)
+
+#gràficament (gràfic de barres)
+freq_sex_estat <- data.frame(prop.table(table(data$estat_contc.factor, data$sexe.factor), 2))
+ggbarplot(freq_sex_estat, x = "Var2", y = "Freq",
+          fill = "Var1",
+          select = c("Home", "Dona"), # tria quines mostres apareixen al gràfic
+          xlab = "",
+          ylab = "Freqüència",
+          palette = c("darkblue", "orange"),
+          legend.title = "Estat del pacient")
 ```
+</details><br> 
 
-## Altres representacions
 
-A vegades però, ens farà falta ser creatius i crear gràfics que surten una mica d'aquest marc que acabem d'explicar. És per això que us animo a explorar alternatives per representar algunes dades.
+</div>
 
-```{r message=FALSE, warning=FALSE}
-ggdotchart(data = polyps_long, x  = "participant_id", y = "n_polyps", 
-           color = "visit",
-           shape = "treatment",
-           group  = "treatment",
-           rotate = T)
+## Guardar els gràfics
+
+Per guardar els gràfics ho pots fer amb la funció `ggsave()`
+```{r eval = F}
+grafic1 <- gghistogram(data, x = "edat_diagn", 
+            title = "Histograma")
+ggsave(grafic1,                   # objecte de l'environment que correspon al gràfic
+       filename = "hist-edat.png" # nom que li volem donar a la figura .png
+       )
 ```
+La figura es guardarà al teu directori de treball.
+
+Si no especifiques l'alçada i l'amplada de la figura, la funció guardarà la imatge amb les mides actuals de la teva finestra "*Plots*" de RStudio. Per fer-ho reproduible, et recomano que defineixis les dimensions mitjançant els argument `width = ` i `height`.
+Amb `ggsave()` també pots controlar el tipus de fitxer d'imatge i la qualitat.
+
+<div class="task-box">
+  <div class="task-title"> Per practicar!</div>
+
+<p>-   Canvia les dimensions del gràfic anterior i guarda'l a la teva carpeta en format .png  </p>
+
+<details>
+```{r eval = FALSE}
+ggsave(grafic1,                   
+       filename = "hist-edat.png",
+       width = 6,
+       height = 10
+       )
+```
+</details><br> 
 
 
-## Hands-On 3
+</div>
+
