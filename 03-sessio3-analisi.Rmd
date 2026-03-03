@@ -467,6 +467,7 @@ ggboxplot(laryngo, x = "metode.fct", y = "attempt1_time",
           ylab = "Temps d'intubació (segons)"
           )
 ```
+</details><br>
 
 <p>-   Visualitza (numèricament i gràficament) la relació entre la mort deguda al càncer i el sexe dels pacients. Ajusta, si cal, els colors, les etiquetes dels eixos i dels títols.  </p>
 
