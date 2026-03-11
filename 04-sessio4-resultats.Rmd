@@ -7,10 +7,6 @@
 
 -   Crear gràfics originals per representar dades diverses
 
--   Explorar i visualitzar la relació multivariant
-
--   Crear informes d'anàlisis estadístiques en format .html o .pdf
-
 </div>
 
 
@@ -65,7 +61,7 @@ ggpaired(
 Amb l'argument `width = 0` forcem que les caixes no apareguin al gràfic, però tot i així no és un gràfic ideal. Les funcions de gràfics del paquet `ggpubr` són molt útils, però a vegades limitades. Una alternativa que permet visualitzar dades longitudianls és a partir del paquet `ggplot2`.
 
 ## El món ggplot2
-El paquet `ggpubr` que hem estat fent servir fins ara crida (utilitza) moltes funcions d'aquest altre paquet anomenta `ggplot2`, que és molt més extens (però alhora una mica més complex de sintaxi). Tot i això, arribats a aquest punt, crec conveninet presentar-vos aquesta llibreria ja que té un gran potencial.
+El paquet `ggpubr` que hem estat fent servir fins ara crida (utilitza) moltes funcions d'aquest altre paquet anomentat `ggplot2`, que és molt més extens (però alhora una mica més complex de sintaxi). Tot i això, arribats a aquest punt, crec conveninet presentar-vos aquesta llibreria ja que té un gran potencial.
 
 Primer cal instal·lar i carregar el paquet:
 ```{r include=TRUE, eval = FALSE}
@@ -86,6 +82,7 @@ ggplot(data = df, mapping = aes(x, y, other aesthetics)) +
 ```
 
 La base del gràfic es defineix dins de la funció `ggplot()`:
+
 -   `data` ha de ser un data frame
 
 -   `mapping = aes()` totes les variables incloses dins de `aes()` es tindran en compte per generar el gràfic: la variable que s'ha de graficar a l'eix horitzontal (`x`), la que s'ha de graficar a l'eix vertical (`y`), i la resta de variables que s'han de tenir en compte per algun aspecte estètic, com per exemple el color. 
@@ -116,13 +113,14 @@ ggplot(data = polyps, # data frame
 
 En el cas que es volguessin pintar les observacions en funció del tractament s'hauria d'escriure dins de `aes(..., color = tretament)`
 ```{r}
-ggplot(data = polyps, # data frame
-  aes(age, baseline, # x i y 
-      color = treatment)
-  ) +
-  geom_point() # afegeix les observacions en forma de punts
+ggplot(data = polyps,
+  aes(age, baseline, color = treatment)) +
+  geom_point()
 ```
+<br>
+
 Tornem a l'exemple longitudinal...
+
 Volem representar el nombre de pòlips de cada participant diferenciant els tractats dels no tractats. En aquest cas, necessitem definir dins de `aes()` les variables que volem que es tinguin en compte a l'estètica del gràficls: `group = participant_id` (les línies han d'unir les observacions de cada pacient); i `color = treatment` (tots els tractats han de ser d'un color i els placebo d'un altre). Per altra banda, el gràfic que ens interessa en aquest cas és un gràfic de línies, per tant, cridarem `geom_line()`. A més, volem que cada observació aparegui com un punt en el gràfic, per tant, afegim `geom_point()`.
 
 ```{r message=TRUE, warning=FALSE}
@@ -142,7 +140,7 @@ El factor `visit` no té l'odre que ens agradaria, recordes com es pot canviar l
 polyps_long$visit <- factor(polyps_long$visit, levels = c("baseline", "number3m", "number12m"))
 ```
 
-Ara torna a exacutar el gràfic i veuràs que apareixen les visites ordenades:
+Ara torna a executar el gràfic i veuràs que apareixen les visites ordenades:
 ```{r}
 ggplot(polyps_long,
              aes(visit, n_polyps,
@@ -157,6 +155,8 @@ ggplot(polyps_long,
 
 A vegades ens farà falta ser creatius i crear gràfics que surten una mica d'aquest marc que acabem d'explicar. És per això que us animo a explorar alternatives per representar algunes dades.
 
+**Exemple 1.**  Distribució del nombre de pòlips de cada pacient en totes les visites i en funció de si prenen tractament o no
+
 ```{r message=FALSE, warning=FALSE}
 ggdotchart(data = polyps_long, x  = "participant_id", y = "n_polyps", 
            color = "visit",
@@ -164,31 +164,37 @@ ggdotchart(data = polyps_long, x  = "participant_id", y = "n_polyps",
            group  = "treatment",
            rotate = T)
 ```
+**Exemple 2.**  Distribució del temps per intubar cada pacient en funció del mètode utilitzat i si l'èxit de l'intent.
 
-```{r message=FALSE, warning=FALSE}
-polyps$dif <- polyps$number3m - polyps$baseline
+```{r}
+# Preparació d eles dades
+laryngo <- medicaldata::laryngoscope
 
-polyps$dif_col <- ifelse(polyps$dif > 0, "augment", "reducció")
-polyps$dif_col <- factor(polyps$dif_col)
+laryngo$subjectID <- paste0("subject", 1:nrow(laryngo))
+laryngo$method.fct <- factor(laryngo$Randomization, levels = c(0,1), labels = c("Standard Macintosh #4", "AWS Pentaz Video"))
+laryngo$attempt1_S_F.fct <- factor(laryngo$attempt1_S_F, levels = c(0,1), labels = c("unsuccessful", "successful"))
 
-ggbarplot(polyps, x = "participant_id", y = "dif",
-          # estètica de les barres
-          color = "dif_col", 
-          fill = "dif_col",
-          width = 0.3,
-          # ordre de les barres
-          sort.val = "desc",
-          rotate = T,
-          # etiquetes (tractament)
-          label = polyps$treatment[order(polyps$dif, decreasing = TRUE)],
-          lab.size = 3,
-          lab.pos = "out",
-          lab.vjust = 0.5,
-          # eixos
-          xlab = "",
-          ylab = "diferència en el nombre pòlips (3 mesos - basal)",
-          legend.title = ""
-          )
+# Creació del gràfic principal
+p <- ggdotchart(data = laryngo, x= "subjectID", y = "attempt1_time",
+           color = "method.fct",
+           shape = "attempt1_S_F.fct",
+           rotate = T,
+           legend = "right",
+           add = "segments",
+           sorting = "descending",
+           add.params = list(color = "lightgray", size = 0.3),
+           xlab = "", 
+           ylab = "Time for intubation (minutes)"
+           )
+
+# Modificació/addició d'elements estètics a un gràfic
+p + 
+  scale_shape_manual(values = c(1, 16)) +
+  labs(shape = "Intubation",color = "Method") +
+  font("y.text", size = 3, color = "blue", face = "bold") +
+  rremove("y.ticks")
 ```
+
+
 
 

@@ -4,7 +4,8 @@ graphics.off()
 #Load Hmisc library
 library(Hmisc)
 #Read Data
-data=read.csv('C:/Users/10033834/Universitat de Vic/Recerca MPT-Equip - General/10. Transferencia/Curs Althaia/curs_r_althaia/data/CursIntroducciAR-CRC_DATA.csv')
+setwd("C:/Users/10033834/Universitat de Vic/Recerca MPT-Equip - General/10. Transferencia/Curs Althaia/curs_r_althaia/data")
+data=read.csv('CursIntroducciAR-CRC_DATA.csv')
 
 #Setting Labels
 label(data$record_id)="Record ID"

@@ -263,6 +263,13 @@ ggboxplot(data, x  = "sexe.factor", y = "edat_diagn",
           add = "jitter") # "jitter" afegeix els punts al diagrama de caixes
 ```
 
+I també afegir-hi la significació estadística entre els grups estudiats:
+```{r}
+ggboxplot(data, x  = "sexe.factor", y = "edat_diagn",
+          add = "jitter") +
+  stat_compare_means() # Add significance levels
+```
+
 Alternatives al gràfic de caixes són el diagrama de violí o el diagrama de punts:
 ```{r message=FALSE, warning=FALSE, include=TRUE, eval =FALSE}
 # Diagrama de violí
@@ -449,9 +456,11 @@ ggboxplot(laryngo, x = "metode.fct", y = "attempt1_time",
           alpha = 0.2,
           add = "jitter",
           xlab = "Mètode d'intubació",
-          ylab = "Temps d'intubació (segons)"
+          ylab = "Temps d'intubació (segons)",
+          legend.title = "Sexe"
           )
 ```
+
 <details>
   <summary><span class="task-title">Solució</span></summary>
 ```{r warning=FALSE, eval = FALSE}
@@ -464,7 +473,8 @@ ggboxplot(laryngo, x = "metode.fct", y = "attempt1_time",
           alpha = 0.2,        # afegim certa transperència dins del boxplot (qüestió estètica)
           add = "jitter",     # afegim totes les observacions en forma de punts
           xlab = "Mètode d'intubació",
-          ylab = "Temps d'intubació (segons)"
+          ylab = "Temps d'intubació (segons)",
+          legend.title = "Sexe"
           )
 ```
 </details><br>

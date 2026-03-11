@@ -3441,15 +3441,20 @@ N = 0</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style
 <div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="03-sessio3-analisi.html#cb434-1" tabindex="-1"></a><span class="fu">ggboxplot</span>(data, <span class="at">x  =</span> <span class="st">&quot;sexe.factor&quot;</span>, <span class="at">y =</span> <span class="st">&quot;edat_diagn&quot;</span>,</span>
 <span id="cb434-2"><a href="03-sessio3-analisi.html#cb434-2" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>) <span class="co"># &quot;jitter&quot; afegeix els punts al diagrama de caixes</span></span></code></pre></div>
 <p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-131-1.png" alt="" width="672" /></p>
+<p>I també afegir-hi la significació estadística entre els grups estudiats:</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="03-sessio3-analisi.html#cb435-1" tabindex="-1"></a><span class="fu">ggboxplot</span>(data, <span class="at">x  =</span> <span class="st">&quot;sexe.factor&quot;</span>, <span class="at">y =</span> <span class="st">&quot;edat_diagn&quot;</span>,</span>
+<span id="cb435-2"><a href="03-sessio3-analisi.html#cb435-2" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>) <span class="sc">+</span></span>
+<span id="cb435-3"><a href="03-sessio3-analisi.html#cb435-3" tabindex="-1"></a>  <span class="fu">stat_compare_means</span>() <span class="co"># Add significance levels</span></span></code></pre></div>
+<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-132-1.png" alt="" width="672" /></p>
 <p>Alternatives al gràfic de caixes són el diagrama de violí o el diagrama de punts:</p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="03-sessio3-analisi.html#cb435-1" tabindex="-1"></a><span class="co"># Diagrama de violí</span></span>
-<span id="cb435-2"><a href="03-sessio3-analisi.html#cb435-2" tabindex="-1"></a><span class="fu">ggviolin</span>(data, <span class="at">x  =</span> <span class="st">&quot;sexe.factor&quot;</span>, <span class="at">y =</span> <span class="st">&quot;edat_diagn&quot;</span>,</span>
-<span id="cb435-3"><a href="03-sessio3-analisi.html#cb435-3" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Diagrama de violí (violin plot)&quot;</span>)</span>
-<span id="cb435-4"><a href="03-sessio3-analisi.html#cb435-4" tabindex="-1"></a></span>
-<span id="cb435-5"><a href="03-sessio3-analisi.html#cb435-5" tabindex="-1"></a><span class="co"># Diagrama de punts</span></span>
-<span id="cb435-6"><a href="03-sessio3-analisi.html#cb435-6" tabindex="-1"></a><span class="fu">ggdotplot</span>(data, <span class="at">x  =</span> <span class="st">&quot;sexe.factor&quot;</span>, <span class="at">y =</span> <span class="st">&quot;edat_diagn&quot;</span>,</span>
-<span id="cb435-7"><a href="03-sessio3-analisi.html#cb435-7" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Diagrama de punts (dot plot)&quot;</span>)</span></code></pre></div>
-<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-133-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="03-sessio3-analisi.html#cb436-1" tabindex="-1"></a><span class="co"># Diagrama de violí</span></span>
+<span id="cb436-2"><a href="03-sessio3-analisi.html#cb436-2" tabindex="-1"></a><span class="fu">ggviolin</span>(data, <span class="at">x  =</span> <span class="st">&quot;sexe.factor&quot;</span>, <span class="at">y =</span> <span class="st">&quot;edat_diagn&quot;</span>,</span>
+<span id="cb436-3"><a href="03-sessio3-analisi.html#cb436-3" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Diagrama de violí (violin plot)&quot;</span>)</span>
+<span id="cb436-4"><a href="03-sessio3-analisi.html#cb436-4" tabindex="-1"></a></span>
+<span id="cb436-5"><a href="03-sessio3-analisi.html#cb436-5" tabindex="-1"></a><span class="co"># Diagrama de punts</span></span>
+<span id="cb436-6"><a href="03-sessio3-analisi.html#cb436-6" tabindex="-1"></a><span class="fu">ggdotplot</span>(data, <span class="at">x  =</span> <span class="st">&quot;sexe.factor&quot;</span>, <span class="at">y =</span> <span class="st">&quot;edat_diagn&quot;</span>,</span>
+<span id="cb436-7"><a href="03-sessio3-analisi.html#cb436-7" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Diagrama de punts (dot plot)&quot;</span>)</span></code></pre></div>
+<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-134-1.png" alt="" width="672" /></p>
 </div>
 </div>
 <div id="relació-entre-dues-variables-categòriques" class="section level2 hasAnchor" number="3.6">
@@ -3467,8 +3472,8 @@ El sexe i l’estadi clínic estan relacionats? En homes (o en dones) es diagnos
 <h3>Resum numèric<a href="03-sessio3-analisi.html#resum-numèric-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La taula de contingència per dues variables categòriques és una taula de freqüències de doble entrada. Aquesta taula té tantes columnes com categories d’una de les variables, i tantes files com categories de l’altra variable. Els valors de la taula corresponen al recompte d’observacions de totes les combinacions definides per les categories de les dues variables.</p>
 <p>Veiem el següent exemple entre sexe i l’estadi clínic;</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="03-sessio3-analisi.html#cb436-1" tabindex="-1"></a><span class="co"># Freqüències absolutes</span></span>
-<span id="cb436-2"><a href="03-sessio3-analisi.html#cb436-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>sexe.factor, data<span class="sc">$</span>estadi_clinic.factor)</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="03-sessio3-analisi.html#cb437-1" tabindex="-1"></a><span class="co"># Freqüències absolutes</span></span>
+<span id="cb437-2"><a href="03-sessio3-analisi.html#cb437-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>sexe.factor, data<span class="sc">$</span>estadi_clinic.factor)</span></code></pre></div>
 <pre><code>##            
 ##             0 I II IIA IIB IIC III IIIA IIIB IIIC IV Desconegut
 ##   Home      0 6  1   6   2   0   0    0    4    2  5          0
@@ -3478,8 +3483,8 @@ El sexe i l’estadi clínic estan relacionats? En homes (o en dones) es diagnos
 <ul>
 <li>freqüències totals:</li>
 </ul>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="03-sessio3-analisi.html#cb438-1" tabindex="-1"></a><span class="co"># Freqüències absolutes</span></span>
-<span id="cb438-2"><a href="03-sessio3-analisi.html#cb438-2" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>sexe.factor, data<span class="sc">$</span>estadi_clinic.factor))</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="03-sessio3-analisi.html#cb439-1" tabindex="-1"></a><span class="co"># Freqüències absolutes</span></span>
+<span id="cb439-2"><a href="03-sessio3-analisi.html#cb439-2" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>sexe.factor, data<span class="sc">$</span>estadi_clinic.factor))</span></code></pre></div>
 <pre><code>##            
 ##                      0          I         II        IIA        IIB        IIC
 ##   Home      0.00000000 0.12500000 0.02083333 0.12500000 0.04166667 0.00000000
@@ -3493,8 +3498,8 @@ El sexe i l’estadi clínic estan relacionats? En homes (o en dones) es diagnos
 <ul>
 <li>freqüències respecte el total de les files:</li>
 </ul>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="03-sessio3-analisi.html#cb440-1" tabindex="-1"></a><span class="co"># Freqüències absolutes</span></span>
-<span id="cb440-2"><a href="03-sessio3-analisi.html#cb440-2" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>sexe.factor, data<span class="sc">$</span>estadi_clinic.factor), <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="03-sessio3-analisi.html#cb441-1" tabindex="-1"></a><span class="co"># Freqüències absolutes</span></span>
+<span id="cb441-2"><a href="03-sessio3-analisi.html#cb441-2" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>sexe.factor, data<span class="sc">$</span>estadi_clinic.factor), <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##            
 ##                      0          I         II        IIA        IIB        IIC
 ##   Home      0.00000000 0.23076923 0.03846154 0.23076923 0.07692308 0.00000000
@@ -3508,8 +3513,8 @@ El sexe i l’estadi clínic estan relacionats? En homes (o en dones) es diagnos
 <ul>
 <li>freqüències respecte el total de les columnes:</li>
 </ul>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="03-sessio3-analisi.html#cb442-1" tabindex="-1"></a><span class="co"># Freqüències absolutes</span></span>
-<span id="cb442-2"><a href="03-sessio3-analisi.html#cb442-2" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>sexe.factor, data<span class="sc">$</span>estadi_clinic.factor), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="03-sessio3-analisi.html#cb443-1" tabindex="-1"></a><span class="co"># Freqüències absolutes</span></span>
+<span id="cb443-2"><a href="03-sessio3-analisi.html#cb443-2" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>sexe.factor, data<span class="sc">$</span>estadi_clinic.factor), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##            
 ##                     0         I        II       IIA       IIB       IIC III
 ##   Home      0.0000000 0.4615385 0.3333333 0.6000000 1.0000000 0.0000000    
@@ -3525,8 +3530,8 @@ El sexe i l’estadi clínic estan relacionats? En homes (o en dones) es diagnos
 <div id="visualització-gràfica-3" class="section level3 unnumbered hasAnchor">
 <h3>Visualització gràfica<a href="03-sessio3-analisi.html#visualització-gràfica-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Les freqüències es visualitzen amb un gràfic de barres:</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="03-sessio3-analisi.html#cb444-1" tabindex="-1"></a>freq_estadi_sexe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>sexe.factor, data<span class="sc">$</span>estadi_clinic.factor), <span class="dv">2</span>))</span>
-<span id="cb444-2"><a href="03-sessio3-analisi.html#cb444-2" tabindex="-1"></a>freq_estadi_sexe</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="03-sessio3-analisi.html#cb445-1" tabindex="-1"></a>freq_estadi_sexe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>sexe.factor, data<span class="sc">$</span>estadi_clinic.factor), <span class="dv">2</span>))</span>
+<span id="cb445-2"><a href="03-sessio3-analisi.html#cb445-2" tabindex="-1"></a>freq_estadi_sexe</span></code></pre></div>
 <pre><code>##         Var1       Var2      Freq
 ## 1       Home          0 0.0000000
 ## 2       Dona          0 1.0000000
@@ -3564,16 +3569,16 @@ El sexe i l’estadi clínic estan relacionats? En homes (o en dones) es diagnos
 ## 34      Home Desconegut       NaN
 ## 35      Dona Desconegut       NaN
 ## 36 No binari Desconegut       NaN</code></pre>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="03-sessio3-analisi.html#cb446-1" tabindex="-1"></a><span class="fu">ggbarplot</span>(<span class="at">data =</span> freq_estadi_sexe, <span class="at">x =</span> <span class="st">&quot;Var2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Freq&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Var1&quot;</span>)</span></code></pre></div>
-<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-138-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="03-sessio3-analisi.html#cb447-1" tabindex="-1"></a><span class="fu">ggbarplot</span>(<span class="at">data =</span> freq_estadi_sexe, <span class="at">x =</span> <span class="st">&quot;Var2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Freq&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Var1&quot;</span>)</span></code></pre></div>
+<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-139-1.png" alt="" width="672" /></p>
 <p>En aquest cas, hi ha categories de l’estadi del càncer per les quals no hi ha cap observació. Per tal de visualitzar només les categories amb valors, podem utilitzar l’argument <code>select =</code>:</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="03-sessio3-analisi.html#cb447-1" tabindex="-1"></a><span class="fu">is.na</span>(freq_estadi_sexe<span class="sc">$</span>Freq)</span></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="03-sessio3-analisi.html#cb448-1" tabindex="-1"></a><span class="fu">is.na</span>(freq_estadi_sexe<span class="sc">$</span>Freq)</span></code></pre></div>
 <pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [13] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 ## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="03-sessio3-analisi.html#cb449-1" tabindex="-1"></a><span class="fu">ggbarplot</span>(<span class="at">data =</span> freq_estadi_sexe, <span class="at">x =</span> <span class="st">&quot;Var2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Freq&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Var1&quot;</span>,</span>
-<span id="cb449-2"><a href="03-sessio3-analisi.html#cb449-2" tabindex="-1"></a>          <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;I&quot;</span>, <span class="st">&quot;II&quot;</span>, <span class="st">&quot;IIA&quot;</span>, <span class="st">&quot;IIB&quot;</span>, <span class="st">&quot;IIC&quot;</span>, <span class="st">&quot;IIIB&quot;</span>, <span class="st">&quot;IIIC&quot;</span>, <span class="st">&quot;IV&quot;</span>))</span></code></pre></div>
-<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-139-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="03-sessio3-analisi.html#cb450-1" tabindex="-1"></a><span class="fu">ggbarplot</span>(<span class="at">data =</span> freq_estadi_sexe, <span class="at">x =</span> <span class="st">&quot;Var2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Freq&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Var1&quot;</span>,</span>
+<span id="cb450-2"><a href="03-sessio3-analisi.html#cb450-2" tabindex="-1"></a>          <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;I&quot;</span>, <span class="st">&quot;II&quot;</span>, <span class="st">&quot;IIA&quot;</span>, <span class="st">&quot;IIB&quot;</span>, <span class="st">&quot;IIC&quot;</span>, <span class="st">&quot;IIIB&quot;</span>, <span class="st">&quot;IIIC&quot;</span>, <span class="st">&quot;IV&quot;</span>))</span></code></pre></div>
+<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-140-1.png" alt="" width="672" /></p>
 </div>
 </div>
 <div id="relació-entre-dues-variables-contínues" class="section level2 hasAnchor" number="3.7">
@@ -3590,26 +3595,26 @@ Com varia el temps per intubar en funció de l’edat del pacient?
 <div id="resum-numèric-3" class="section level3 unnumbered hasAnchor">
 <h3>Resum numèric<a href="03-sessio3-analisi.html#resum-numèric-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La relació entre dues variables numèriques la podem explorar mitjançant el coeficient de correlació</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="03-sessio3-analisi.html#cb450-1" tabindex="-1"></a><span class="co"># Carreguem les dades del paquet medicaldata</span></span>
-<span id="cb450-2"><a href="03-sessio3-analisi.html#cb450-2" tabindex="-1"></a>laryngo <span class="ot">&lt;-</span> medicaldata<span class="sc">::</span>laryngoscope</span>
-<span id="cb450-3"><a href="03-sessio3-analisi.html#cb450-3" tabindex="-1"></a></span>
-<span id="cb450-4"><a href="03-sessio3-analisi.html#cb450-4" tabindex="-1"></a><span class="co"># Calculem el coeficient de correlació</span></span>
-<span id="cb450-5"><a href="03-sessio3-analisi.html#cb450-5" tabindex="-1"></a><span class="fu">cor</span>(laryngo<span class="sc">$</span>age, laryngo<span class="sc">$</span>attempt1_time)</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="03-sessio3-analisi.html#cb451-1" tabindex="-1"></a><span class="co"># Carreguem les dades del paquet medicaldata</span></span>
+<span id="cb451-2"><a href="03-sessio3-analisi.html#cb451-2" tabindex="-1"></a>laryngo <span class="ot">&lt;-</span> medicaldata<span class="sc">::</span>laryngoscope</span>
+<span id="cb451-3"><a href="03-sessio3-analisi.html#cb451-3" tabindex="-1"></a></span>
+<span id="cb451-4"><a href="03-sessio3-analisi.html#cb451-4" tabindex="-1"></a><span class="co"># Calculem el coeficient de correlació</span></span>
+<span id="cb451-5"><a href="03-sessio3-analisi.html#cb451-5" tabindex="-1"></a><span class="fu">cor</span>(laryngo<span class="sc">$</span>age, laryngo<span class="sc">$</span>attempt1_time)</span></code></pre></div>
 <pre><code>## [1] 0.3237331</code></pre>
 <p>Podem canviar nosaltres el coeficient de correlació</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="03-sessio3-analisi.html#cb452-1" tabindex="-1"></a><span class="fu">cor</span>(laryngo<span class="sc">$</span>age, laryngo<span class="sc">$</span>attempt1_time, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="03-sessio3-analisi.html#cb453-1" tabindex="-1"></a><span class="fu">cor</span>(laryngo<span class="sc">$</span>age, laryngo<span class="sc">$</span>attempt1_time, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0.3128321</code></pre>
 </div>
 <div id="visualitzacions-gràfiques" class="section level3 unnumbered hasAnchor">
 <h3>Visualitzacions gràfiques<a href="03-sessio3-analisi.html#visualitzacions-gràfiques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Núvol de punts o Diagrames de dispersió entre dues variables numèriques</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="03-sessio3-analisi.html#cb454-1" tabindex="-1"></a><span class="fu">ggscatter</span>(<span class="at">data =</span> laryngo, <span class="at">x =</span> <span class="st">&quot;age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>) </span></code></pre></div>
-<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-142-1.png" alt="" width="672" /></p>
-<p>Per afegir la línia i el coeficient de correlació dins del gràfic:</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="03-sessio3-analisi.html#cb455-1" tabindex="-1"></a><span class="fu">ggscatter</span>(<span class="at">data =</span> laryngo, <span class="at">x =</span> <span class="st">&quot;age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>,</span>
-<span id="cb455-2"><a href="03-sessio3-analisi.html#cb455-2" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>)<span class="sc">+</span></span>
-<span id="cb455-3"><a href="03-sessio3-analisi.html#cb455-3" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="co"># quin coeficient calcula per defecte?</span></span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="03-sessio3-analisi.html#cb455-1" tabindex="-1"></a><span class="fu">ggscatter</span>(<span class="at">data =</span> laryngo, <span class="at">x =</span> <span class="st">&quot;age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>) </span></code></pre></div>
 <p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-143-1.png" alt="" width="672" /></p>
+<p>Per afegir la línia i el coeficient de correlació dins del gràfic:</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="03-sessio3-analisi.html#cb456-1" tabindex="-1"></a><span class="fu">ggscatter</span>(<span class="at">data =</span> laryngo, <span class="at">x =</span> <span class="st">&quot;age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>,</span>
+<span id="cb456-2"><a href="03-sessio3-analisi.html#cb456-2" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>)<span class="sc">+</span></span>
+<span id="cb456-3"><a href="03-sessio3-analisi.html#cb456-3" tabindex="-1"></a>  <span class="fu">stat_cor</span>() <span class="co"># quin coeficient calcula per defecte?</span></span></code></pre></div>
+<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-144-1.png" alt="" width="672" /></p>
 </div>
 </div>
 <div id="relació-entre-tres-o-més-variables" class="section level2 hasAnchor" number="3.8">
@@ -3625,13 +3630,13 @@ La relació entre el temps per intubar i l’edat és igual en els dos mètodes?
 </div>
 <p><br></p>
 <p>Recorda que la variable <code>Randomization</code> és la que determina els dos mètodes d’intubació utilitzats. Cal transformar-la a factor abans de res:</p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="03-sessio3-analisi.html#cb456-1" tabindex="-1"></a>laryngo<span class="sc">$</span>metode.fct <span class="ot">&lt;-</span> <span class="fu">factor</span>(laryngo<span class="sc">$</span>Randomization, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Standard Macintosh #4&quot;</span>, <span class="st">&quot;AWS Pentaz Video&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="03-sessio3-analisi.html#cb457-1" tabindex="-1"></a>laryngo<span class="sc">$</span>metode.fct <span class="ot">&lt;-</span> <span class="fu">factor</span>(laryngo<span class="sc">$</span>Randomization, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Standard Macintosh #4&quot;</span>, <span class="st">&quot;AWS Pentaz Video&quot;</span>))</span></code></pre></div>
 <p>Afegint color al gràfic de la relació edat-temps podem distingir entre els dos mètodes:</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="03-sessio3-analisi.html#cb457-1" tabindex="-1"></a><span class="fu">ggscatter</span>(<span class="at">data =</span> laryngo, <span class="at">x =</span> <span class="st">&quot;age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>,</span>
-<span id="cb457-2"><a href="03-sessio3-analisi.html#cb457-2" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;metode.fct&quot;</span>,</span>
-<span id="cb457-3"><a href="03-sessio3-analisi.html#cb457-3" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>)<span class="sc">+</span></span>
-<span id="cb457-4"><a href="03-sessio3-analisi.html#cb457-4" tabindex="-1"></a>  <span class="fu">stat_cor</span>(<span class="fu">aes</span>(<span class="at">color =</span> metode.fct)) <span class="co"># quin coeficient calcula per defecte?</span></span></code></pre></div>
-<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-145-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="03-sessio3-analisi.html#cb458-1" tabindex="-1"></a><span class="fu">ggscatter</span>(<span class="at">data =</span> laryngo, <span class="at">x =</span> <span class="st">&quot;age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>,</span>
+<span id="cb458-2"><a href="03-sessio3-analisi.html#cb458-2" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;metode.fct&quot;</span>,</span>
+<span id="cb458-3"><a href="03-sessio3-analisi.html#cb458-3" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>)<span class="sc">+</span></span>
+<span id="cb458-4"><a href="03-sessio3-analisi.html#cb458-4" tabindex="-1"></a>  <span class="fu">stat_cor</span>(<span class="fu">aes</span>(<span class="at">color =</span> metode.fct)) <span class="co"># quin coeficient calcula per defecte?</span></span></code></pre></div>
+<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-146-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>Seguint amb l’exemple anterior, si ens plantegem la següent pregunta:</p>
 <div class="research-question-box">
@@ -3643,19 +3648,19 @@ La relació entre el temps per intubar i l’edat és igual en els dos mètodes 
 </div>
 </div>
 <p>Similar al color, la forma dels punts és una bona eina per afegir una capa més d’informació al gràfic:</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="03-sessio3-analisi.html#cb458-1" tabindex="-1"></a>laryngo<span class="sc">$</span>sexe.fct <span class="ot">&lt;-</span> <span class="fu">factor</span>(laryngo<span class="sc">$</span>gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>))</span>
-<span id="cb458-2"><a href="03-sessio3-analisi.html#cb458-2" tabindex="-1"></a></span>
-<span id="cb458-3"><a href="03-sessio3-analisi.html#cb458-3" tabindex="-1"></a><span class="fu">ggscatter</span>(<span class="at">data =</span> laryngo, <span class="at">x =</span> <span class="st">&quot;age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>,</span>
-<span id="cb458-4"><a href="03-sessio3-analisi.html#cb458-4" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;metode.fct&quot;</span>,</span>
-<span id="cb458-5"><a href="03-sessio3-analisi.html#cb458-5" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>,</span>
-<span id="cb458-6"><a href="03-sessio3-analisi.html#cb458-6" tabindex="-1"></a>          <span class="at">shape =</span> <span class="st">&quot;sexe.fct&quot;</span>)</span></code></pre></div>
-<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-146-1.png" alt="" width="672" />
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="03-sessio3-analisi.html#cb459-1" tabindex="-1"></a>laryngo<span class="sc">$</span>sexe.fct <span class="ot">&lt;-</span> <span class="fu">factor</span>(laryngo<span class="sc">$</span>gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>))</span>
+<span id="cb459-2"><a href="03-sessio3-analisi.html#cb459-2" tabindex="-1"></a></span>
+<span id="cb459-3"><a href="03-sessio3-analisi.html#cb459-3" tabindex="-1"></a><span class="fu">ggscatter</span>(<span class="at">data =</span> laryngo, <span class="at">x =</span> <span class="st">&quot;age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>,</span>
+<span id="cb459-4"><a href="03-sessio3-analisi.html#cb459-4" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;metode.fct&quot;</span>,</span>
+<span id="cb459-5"><a href="03-sessio3-analisi.html#cb459-5" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>,</span>
+<span id="cb459-6"><a href="03-sessio3-analisi.html#cb459-6" tabindex="-1"></a>          <span class="at">shape =</span> <span class="st">&quot;sexe.fct&quot;</span>)</span></code></pre></div>
+<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-147-1.png" alt="" width="672" />
 Tot i això, el gàfic anterior pot arribar a ser una mica confós. L’argument <code>facet.by =</code> permet afegir la informació d’una tercera variable creant un gràfic per cada categoria d’aquesta última:</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="03-sessio3-analisi.html#cb459-1" tabindex="-1"></a><span class="fu">ggscatter</span>(<span class="at">data =</span> laryngo, <span class="at">x =</span> <span class="st">&quot;age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>,</span>
-<span id="cb459-2"><a href="03-sessio3-analisi.html#cb459-2" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;metode.fct&quot;</span>,</span>
-<span id="cb459-3"><a href="03-sessio3-analisi.html#cb459-3" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>,</span>
-<span id="cb459-4"><a href="03-sessio3-analisi.html#cb459-4" tabindex="-1"></a>          <span class="at">facet.by =</span> <span class="st">&quot;sexe.fct&quot;</span>)</span></code></pre></div>
-<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-147-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="03-sessio3-analisi.html#cb460-1" tabindex="-1"></a><span class="fu">ggscatter</span>(<span class="at">data =</span> laryngo, <span class="at">x =</span> <span class="st">&quot;age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>,</span>
+<span id="cb460-2"><a href="03-sessio3-analisi.html#cb460-2" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;metode.fct&quot;</span>,</span>
+<span id="cb460-3"><a href="03-sessio3-analisi.html#cb460-3" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>,</span>
+<span id="cb460-4"><a href="03-sessio3-analisi.html#cb460-4" tabindex="-1"></a>          <span class="at">facet.by =</span> <span class="st">&quot;sexe.fct&quot;</span>)</span></code></pre></div>
+<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-148-1.png" alt="" width="672" /></p>
 </div>
 <div id="exercicis-ii" class="section level2 hasAnchor" number="3.9">
 <h2><span class="header-section-number">3.9</span> Exercicis (II)<a href="03-sessio3-analisi.html#exercicis-ii" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -3666,24 +3671,28 @@ Per practicar!
 <p>
 <ul>
 <li>Intenta reproduir el següent gràfic a partir de les dades de <code>laryngoscope</code>. Per fer-ho consulta l’ajuda de la funció del gràfic en qüestió:
-</p>
-<img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-148-1.png" alt="" width="672" />
+</p></li>
+</ul>
+<pre><code>## Ignoring unknown labels:
+## • linetype : &quot;Sexe&quot;
+## • shape : &quot;Sexe&quot;</code></pre>
+<p><img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-149-1.png" alt="" width="672" /></p>
 <details>
 <summary>
 <span class="task-title">Solució</span>
-</summary></li>
-</ul>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="03-sessio3-analisi.html#cb460-1" tabindex="-1"></a><span class="co"># Primer hem de transformar la variable gender a factor (si no la tens ja transformada)</span></span>
-<span id="cb460-2"><a href="03-sessio3-analisi.html#cb460-2" tabindex="-1"></a>laryngo<span class="sc">$</span>sexe.fct <span class="ot">&lt;-</span> <span class="fu">factor</span>(laryngo<span class="sc">$</span>gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>))</span>
-<span id="cb460-3"><a href="03-sessio3-analisi.html#cb460-3" tabindex="-1"></a><span class="co"># El gràfic és un boxplot</span></span>
-<span id="cb460-4"><a href="03-sessio3-analisi.html#cb460-4" tabindex="-1"></a><span class="fu">ggboxplot</span>(laryngo, <span class="at">x =</span> <span class="st">&quot;metode.fct&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>,</span>
-<span id="cb460-5"><a href="03-sessio3-analisi.html#cb460-5" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;sexe.fct&quot;</span>, <span class="co"># colors de les línies del boxplot diferents en funció del sexe</span></span>
-<span id="cb460-6"><a href="03-sessio3-analisi.html#cb460-6" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;sexe.fct&quot;</span>,  <span class="co"># colors de dins dels boxplots diferents en funció del sexe</span></span>
-<span id="cb460-7"><a href="03-sessio3-analisi.html#cb460-7" tabindex="-1"></a>          <span class="at">alpha =</span> <span class="fl">0.2</span>,        <span class="co"># afegim certa transperència dins del boxplot (qüestió estètica)</span></span>
-<span id="cb460-8"><a href="03-sessio3-analisi.html#cb460-8" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>,     <span class="co"># afegim totes les observacions en forma de punts</span></span>
-<span id="cb460-9"><a href="03-sessio3-analisi.html#cb460-9" tabindex="-1"></a>          <span class="at">xlab =</span> <span class="st">&quot;Mètode d&#39;intubació&quot;</span>,</span>
-<span id="cb460-10"><a href="03-sessio3-analisi.html#cb460-10" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Temps d&#39;intubació (segons)&quot;</span></span>
-<span id="cb460-11"><a href="03-sessio3-analisi.html#cb460-11" tabindex="-1"></a>          )</span></code></pre></div>
+</summary>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="03-sessio3-analisi.html#cb462-1" tabindex="-1"></a><span class="co"># Primer hem de transformar la variable gender a factor (si no la tens ja transformada)</span></span>
+<span id="cb462-2"><a href="03-sessio3-analisi.html#cb462-2" tabindex="-1"></a>laryngo<span class="sc">$</span>sexe.fct <span class="ot">&lt;-</span> <span class="fu">factor</span>(laryngo<span class="sc">$</span>gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>))</span>
+<span id="cb462-3"><a href="03-sessio3-analisi.html#cb462-3" tabindex="-1"></a><span class="co"># El gràfic és un boxplot</span></span>
+<span id="cb462-4"><a href="03-sessio3-analisi.html#cb462-4" tabindex="-1"></a><span class="fu">ggboxplot</span>(laryngo, <span class="at">x =</span> <span class="st">&quot;metode.fct&quot;</span>, <span class="at">y =</span> <span class="st">&quot;attempt1_time&quot;</span>,</span>
+<span id="cb462-5"><a href="03-sessio3-analisi.html#cb462-5" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;sexe.fct&quot;</span>, <span class="co"># colors de les línies del boxplot diferents en funció del sexe</span></span>
+<span id="cb462-6"><a href="03-sessio3-analisi.html#cb462-6" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;sexe.fct&quot;</span>,  <span class="co"># colors de dins dels boxplots diferents en funció del sexe</span></span>
+<span id="cb462-7"><a href="03-sessio3-analisi.html#cb462-7" tabindex="-1"></a>          <span class="at">alpha =</span> <span class="fl">0.2</span>,        <span class="co"># afegim certa transperència dins del boxplot (qüestió estètica)</span></span>
+<span id="cb462-8"><a href="03-sessio3-analisi.html#cb462-8" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">&quot;jitter&quot;</span>,     <span class="co"># afegim totes les observacions en forma de punts</span></span>
+<span id="cb462-9"><a href="03-sessio3-analisi.html#cb462-9" tabindex="-1"></a>          <span class="at">xlab =</span> <span class="st">&quot;Mètode d&#39;intubació&quot;</span>,</span>
+<span id="cb462-10"><a href="03-sessio3-analisi.html#cb462-10" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Temps d&#39;intubació (segons)&quot;</span>,</span>
+<span id="cb462-11"><a href="03-sessio3-analisi.html#cb462-11" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="st">&quot;Sexe&quot;</span></span>
+<span id="cb462-12"><a href="03-sessio3-analisi.html#cb462-12" tabindex="-1"></a>          )</span></code></pre></div>
 </details>
 <p><br></p>
 <p>
@@ -3695,12 +3704,12 @@ Per practicar!
 <summary>
 <span class="task-title">Solució</span>
 </summary>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="03-sessio3-analisi.html#cb461-1" tabindex="-1"></a><span class="co"># numèricament (taula de contingència) - Funció tbl_summary()</span></span>
-<span id="cb461-2"><a href="03-sessio3-analisi.html#cb461-2" tabindex="-1"></a><span class="fu">tbl_summary</span>(data, <span class="at">include =</span> estat_contc.factor, </span>
-<span id="cb461-3"><a href="03-sessio3-analisi.html#cb461-3" tabindex="-1"></a>            <span class="at">by =</span> sexe.factor,</span>
-<span id="cb461-4"><a href="03-sessio3-analisi.html#cb461-4" tabindex="-1"></a>            <span class="at">label =</span> <span class="fu">list</span>(<span class="at">sexe.factor =</span> <span class="st">&quot;Sexe&quot;</span>,</span>
-<span id="cb461-5"><a href="03-sessio3-analisi.html#cb461-5" tabindex="-1"></a>                         <span class="at">estat_contc.factor =</span> <span class="st">&quot;Estat&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb461-6"><a href="03-sessio3-analisi.html#cb461-6" tabindex="-1"></a>  <span class="fu">modify_header</span>(label <span class="sc">~</span> <span class="st">&quot;**Variable**&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="03-sessio3-analisi.html#cb463-1" tabindex="-1"></a><span class="co"># numèricament (taula de contingència) - Funció tbl_summary()</span></span>
+<span id="cb463-2"><a href="03-sessio3-analisi.html#cb463-2" tabindex="-1"></a><span class="fu">tbl_summary</span>(data, <span class="at">include =</span> estat_contc.factor, </span>
+<span id="cb463-3"><a href="03-sessio3-analisi.html#cb463-3" tabindex="-1"></a>            <span class="at">by =</span> sexe.factor,</span>
+<span id="cb463-4"><a href="03-sessio3-analisi.html#cb463-4" tabindex="-1"></a>            <span class="at">label =</span> <span class="fu">list</span>(<span class="at">sexe.factor =</span> <span class="st">&quot;Sexe&quot;</span>,</span>
+<span id="cb463-5"><a href="03-sessio3-analisi.html#cb463-5" tabindex="-1"></a>                         <span class="at">estat_contc.factor =</span> <span class="st">&quot;Estat&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb463-6"><a href="03-sessio3-analisi.html#cb463-6" tabindex="-1"></a>  <span class="fu">modify_header</span>(label <span class="sc">~</span> <span class="st">&quot;**Variable**&quot;</span>) </span></code></pre></div>
 <div id="xgrqtiuklh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#xgrqtiuklh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4183,22 +4192,22 @@ N = 0</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style
   </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="03-sessio3-analisi.html#cb462-1" tabindex="-1"></a><span class="co"># numèricament (taula de contingència) - Funció table()</span></span>
-<span id="cb462-2"><a href="03-sessio3-analisi.html#cb462-2" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>estat_contc.factor, data<span class="sc">$</span>sexe.factor), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="03-sessio3-analisi.html#cb464-1" tabindex="-1"></a><span class="co"># numèricament (taula de contingència) - Funció table()</span></span>
+<span id="cb464-2"><a href="03-sessio3-analisi.html#cb464-2" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>estat_contc.factor, data<span class="sc">$</span>sexe.factor), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##       
 ##             Home      Dona No binari
 ##   Viu  0.7692308 0.8636364          
 ##   Mort 0.2307692 0.1363636</code></pre>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="03-sessio3-analisi.html#cb464-1" tabindex="-1"></a><span class="co">#gràficament (gràfic de barres)</span></span>
-<span id="cb464-2"><a href="03-sessio3-analisi.html#cb464-2" tabindex="-1"></a>freq_sex_estat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>estat_contc.factor, data<span class="sc">$</span>sexe.factor), <span class="dv">2</span>))</span>
-<span id="cb464-3"><a href="03-sessio3-analisi.html#cb464-3" tabindex="-1"></a><span class="fu">ggbarplot</span>(freq_sex_estat, <span class="at">x =</span> <span class="st">&quot;Var2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Freq&quot;</span>,</span>
-<span id="cb464-4"><a href="03-sessio3-analisi.html#cb464-4" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;Var1&quot;</span>,</span>
-<span id="cb464-5"><a href="03-sessio3-analisi.html#cb464-5" tabindex="-1"></a>          <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;Home&quot;</span>, <span class="st">&quot;Dona&quot;</span>), <span class="co"># tria quines mostres apareixen al gràfic</span></span>
-<span id="cb464-6"><a href="03-sessio3-analisi.html#cb464-6" tabindex="-1"></a>          <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb464-7"><a href="03-sessio3-analisi.html#cb464-7" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Freqüència&quot;</span>,</span>
-<span id="cb464-8"><a href="03-sessio3-analisi.html#cb464-8" tabindex="-1"></a>          <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;orange&quot;</span>),</span>
-<span id="cb464-9"><a href="03-sessio3-analisi.html#cb464-9" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="st">&quot;Estat del pacient&quot;</span>)</span></code></pre></div>
-<img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-150-1.png" alt="" width="672" />
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="03-sessio3-analisi.html#cb466-1" tabindex="-1"></a><span class="co">#gràficament (gràfic de barres)</span></span>
+<span id="cb466-2"><a href="03-sessio3-analisi.html#cb466-2" tabindex="-1"></a>freq_sex_estat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(data<span class="sc">$</span>estat_contc.factor, data<span class="sc">$</span>sexe.factor), <span class="dv">2</span>))</span>
+<span id="cb466-3"><a href="03-sessio3-analisi.html#cb466-3" tabindex="-1"></a><span class="fu">ggbarplot</span>(freq_sex_estat, <span class="at">x =</span> <span class="st">&quot;Var2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Freq&quot;</span>,</span>
+<span id="cb466-4"><a href="03-sessio3-analisi.html#cb466-4" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;Var1&quot;</span>,</span>
+<span id="cb466-5"><a href="03-sessio3-analisi.html#cb466-5" tabindex="-1"></a>          <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;Home&quot;</span>, <span class="st">&quot;Dona&quot;</span>), <span class="co"># tria quines mostres apareixen al gràfic</span></span>
+<span id="cb466-6"><a href="03-sessio3-analisi.html#cb466-6" tabindex="-1"></a>          <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb466-7"><a href="03-sessio3-analisi.html#cb466-7" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Freqüència&quot;</span>,</span>
+<span id="cb466-8"><a href="03-sessio3-analisi.html#cb466-8" tabindex="-1"></a>          <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;orange&quot;</span>),</span>
+<span id="cb466-9"><a href="03-sessio3-analisi.html#cb466-9" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="st">&quot;Estat del pacient&quot;</span>)</span></code></pre></div>
+<img src="Introduccio_R_Analisi_Dades_files/figure-html/unnamed-chunk-151-1.png" alt="" width="672" />
 </details>
 <p><br></p>
 </div>
@@ -4206,11 +4215,11 @@ N = 0</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style
 <div id="guardar-els-gràfics" class="section level2 hasAnchor" number="3.10">
 <h2><span class="header-section-number">3.10</span> Guardar els gràfics<a href="03-sessio3-analisi.html#guardar-els-gràfics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Per guardar els gràfics ho pots fer amb la funció <code>ggsave()</code></p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="03-sessio3-analisi.html#cb465-1" tabindex="-1"></a>grafic1 <span class="ot">&lt;-</span> <span class="fu">gghistogram</span>(data, <span class="at">x =</span> <span class="st">&quot;edat_diagn&quot;</span>, </span>
-<span id="cb465-2"><a href="03-sessio3-analisi.html#cb465-2" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">&quot;Histograma&quot;</span>)</span>
-<span id="cb465-3"><a href="03-sessio3-analisi.html#cb465-3" tabindex="-1"></a><span class="fu">ggsave</span>(grafic1,                   <span class="co"># objecte de l&#39;environment que correspon al gràfic</span></span>
-<span id="cb465-4"><a href="03-sessio3-analisi.html#cb465-4" tabindex="-1"></a>       <span class="at">filename =</span> <span class="st">&quot;hist-edat.png&quot;</span> <span class="co"># nom que li volem donar a la figura .png</span></span>
-<span id="cb465-5"><a href="03-sessio3-analisi.html#cb465-5" tabindex="-1"></a>       )</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="03-sessio3-analisi.html#cb467-1" tabindex="-1"></a>grafic1 <span class="ot">&lt;-</span> <span class="fu">gghistogram</span>(data, <span class="at">x =</span> <span class="st">&quot;edat_diagn&quot;</span>, </span>
+<span id="cb467-2"><a href="03-sessio3-analisi.html#cb467-2" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">&quot;Histograma&quot;</span>)</span>
+<span id="cb467-3"><a href="03-sessio3-analisi.html#cb467-3" tabindex="-1"></a><span class="fu">ggsave</span>(grafic1,                   <span class="co"># objecte de l&#39;environment que correspon al gràfic</span></span>
+<span id="cb467-4"><a href="03-sessio3-analisi.html#cb467-4" tabindex="-1"></a>       <span class="at">filename =</span> <span class="st">&quot;hist-edat.png&quot;</span> <span class="co"># nom que li volem donar a la figura .png</span></span>
+<span id="cb467-5"><a href="03-sessio3-analisi.html#cb467-5" tabindex="-1"></a>       )</span></code></pre></div>
 <p>La figura es guardarà al teu directori de treball.</p>
 <p>Si no especifiques l’alçada i l’amplada de la figura, la funció guardarà la imatge amb les mides actuals de la teva finestra “<em>Plots</em>” de RStudio. Per fer-ho reproduible, et recomano que defineixis les dimensions mitjançant els argument <code>width =</code> i <code>height</code>.
 Amb <code>ggsave()</code> també pots controlar el tipus de fitxer d’imatge i la qualitat.</p>
@@ -4224,11 +4233,11 @@ Per practicar!
 </p></li>
 </ul>
 <details>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="03-sessio3-analisi.html#cb466-1" tabindex="-1"></a><span class="fu">ggsave</span>(grafic1,                   </span>
-<span id="cb466-2"><a href="03-sessio3-analisi.html#cb466-2" tabindex="-1"></a>       <span class="at">filename =</span> <span class="st">&quot;hist-edat.png&quot;</span>,</span>
-<span id="cb466-3"><a href="03-sessio3-analisi.html#cb466-3" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">6</span>,</span>
-<span id="cb466-4"><a href="03-sessio3-analisi.html#cb466-4" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">10</span></span>
-<span id="cb466-5"><a href="03-sessio3-analisi.html#cb466-5" tabindex="-1"></a>       )</span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="03-sessio3-analisi.html#cb468-1" tabindex="-1"></a><span class="fu">ggsave</span>(grafic1,                   </span>
+<span id="cb468-2"><a href="03-sessio3-analisi.html#cb468-2" tabindex="-1"></a>       <span class="at">filename =</span> <span class="st">&quot;hist-edat.png&quot;</span>,</span>
+<span id="cb468-3"><a href="03-sessio3-analisi.html#cb468-3" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">6</span>,</span>
+<span id="cb468-4"><a href="03-sessio3-analisi.html#cb468-4" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">10</span></span>
+<span id="cb468-5"><a href="03-sessio3-analisi.html#cb468-5" tabindex="-1"></a>       )</span></code></pre></div>
 </details>
 <p><br></p>
 </div>
